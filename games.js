@@ -17,7 +17,7 @@ window.GAMES = [
   {
     id: "last-resort",
     title: "Last Resort",
-    url: "",                      // TODO: paste the live game URL
+    url: "https://pyramid2.replit.app/last-resort/",
     blurb: "Keep a wobbly island resort afloat — earn, spend, and invest your way back to five stars.",
     skills: ["Budgeting", "Decision-making"],
     ageBand: "Ages 10+",
@@ -29,7 +29,7 @@ window.GAMES = [
   {
     id: "squirrel-stash",
     title: "Squirrel Stash",
-    url: "",                      // TODO: paste the live game URL
+    url: "https://acorntrail.replit.app",
     blurb: "Help a thrifty squirrel save up for winter — a playful first taste of saving and setting goals.",
     skills: ["Saving", "Goal-setting"],
     ageBand: "Ages 6+",
@@ -41,7 +41,7 @@ window.GAMES = [
   {
     id: "monkey-money",
     title: "Monkey Money",
-    url: "",                      // TODO: paste the live game URL
+    url: "https://amuze.me",
     blurb: "Earn it, count it, spend it wisely — money basics with a cheeky monkey.",
     skills: ["Money basics", "Counting"],
     ageBand: "Ages 5+",
@@ -53,7 +53,7 @@ window.GAMES = [
   {
     id: "greater-gator",
     title: "Greater Gator",
-    url: "",                      // TODO: paste the live game URL
+    url: "https://greatergator.replit.app",
     blurb: "Feed the hungry gator the bigger number — sharpen comparison and number sense.",
     skills: ["Comparing", "Number sense"],
     ageBand: "Ages 5+",
@@ -65,7 +65,7 @@ window.GAMES = [
   {
     id: "adventure-101",
     title: "Adventure 101",
-    url: "",                      // TODO: paste the live game URL
+    url: "https://adv101.com",
     blurb: "A choose-your-path money adventure — smart choices unlock the next chapter.",
     skills: ["Decision-making", "Money smarts"],
     ageBand: "Ages 8+",
