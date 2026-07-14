@@ -1,7 +1,8 @@
 # RBC Quest
 
-A lightweight demo hub that links to BlueWizard's financial-literacy **edugames**,
-built for a pitch to RBC. Pick a game, click **Play**, and it opens in a new tab.
+A lightweight demo hub that links to **Questor Labs'** financial-literacy **edugames**,
+built for a pitch to RBC. (Questor Labs is the educational-games studio of Blue Wizard —
+[questorlabs.com](https://questorlabs.com).) Pick a game, click **Play**, and it opens in a new tab.
 Designed for desktop, but it degrades gracefully on phones — any game marked
 *best on desktop* shows a badge and warns mobile visitors instead of hiding.
 
@@ -71,4 +72,4 @@ python3 -m http.server 8000    # → http://localhost:8000
 
 ---
 
-*RBC Quest — an educational-games concept by BlueWizard.*
+*RBC Quest — built by [Questor Labs](https://questorlabs.com), the educational-games studio of Blue Wizard. “Make Learning Irresistible.”*
