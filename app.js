@@ -106,13 +106,37 @@
     return link;
   }
 
+  // Ordered catalog sections. Games are grouped by their `category` field.
+  var GROUPS = [
+    { key: "fin-lit", title: "Financial Literacy", blurb: "Real money skills — saving, budgeting, and smart spending." },
+    { key: "math",    title: "Early Math",         blurb: "Number foundations — counting, comparison and problem-solving, geared to younger players." }
+  ];
+
+  function buildSectionHeader(group) {
+    var sec = el("div", "grid__section grid__section--" + group.key);
+    sec.appendChild(el("h3", "grid__section-title", group.title));
+    if (group.blurb) sec.appendChild(el("p", "grid__section-blurb", group.blurb));
+    return sec;
+  }
+
   function render() {
     if (!grid) return;
     var mobile = isSmallScreen();
 
     grid.textContent = "";
     var frag = document.createDocumentFragment();
-    games.forEach(function (g) { frag.appendChild(buildCard(g, mobile)); });
+    var placed = {};
+
+    GROUPS.forEach(function (group) {
+      var inGroup = games.filter(function (g) { return g.category === group.key; });
+      if (!inGroup.length) return;
+      frag.appendChild(buildSectionHeader(group));
+      inGroup.forEach(function (g) { placed[g.id] = true; frag.appendChild(buildCard(g, mobile)); });
+    });
+    // Any game without a matching category still shows (ungrouped, at the end).
+    games.filter(function (g) { return !placed[g.id]; })
+         .forEach(function (g) { frag.appendChild(buildCard(g, mobile)); });
+
     grid.appendChild(frag);
 
     // Show the top banner only on small screens when a game truly needs desktop.

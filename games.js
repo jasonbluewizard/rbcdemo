@@ -6,6 +6,8 @@
  *   • Add a game's live link ....... set `url` to the playable URL
  *   • Mark a game "best on desktop"  set `desktopOnly: true`
  *                                    (shows a badge + warns phone visitors)
+ *   • Group a game ................. set `category` to "fin-lit" or "math"
+ *                                    ("Financial Literacy" vs "Early Math" sections)
  *   • Change a card's look ......... edit `emoji` and `accent` (2 hex colors)
  *   • Reword a card ................ edit `blurb`, `skills`, `ageBand`
  *
@@ -18,6 +20,7 @@ window.GAMES = [
     id: "last-resort",
     title: "Last Resort",
     url: "https://pyramid2.replit.app/last-resort/",
+    category: "fin-lit",
     blurb: "Keep a wobbly island resort afloat — earn, spend, and invest your way back to five stars.",
     skills: ["Budgeting", "Decision-making"],
     ageBand: "Ages 10+",
@@ -30,6 +33,7 @@ window.GAMES = [
     id: "squirrel-stash",
     title: "Squirrel Stash",
     url: "https://acorntrail.replit.app",
+    category: "fin-lit",
     blurb: "Help a thrifty squirrel save up for winter — a playful first taste of saving and setting goals.",
     skills: ["Saving", "Goal-setting"],
     ageBand: "Ages 6+",
@@ -42,6 +46,7 @@ window.GAMES = [
     id: "monkey-money",
     title: "Monkey Money",
     url: "https://amuze.me",
+    category: "fin-lit",
     blurb: "Earn it, count it, spend it wisely — money basics with a cheeky monkey.",
     skills: ["Money basics", "Counting"],
     ageBand: "Ages 5+",
@@ -54,6 +59,7 @@ window.GAMES = [
     id: "greater-gator",
     title: "Greater Gator",
     url: "https://greatergator.replit.app",
+    category: "math",
     blurb: "Feed the hungry gator the bigger number — sharpen comparison and number sense.",
     skills: ["Comparing", "Number sense"],
     ageBand: "Ages 5+",
@@ -66,9 +72,10 @@ window.GAMES = [
     id: "adventure-101",
     title: "Adventure 101",
     url: "https://adv101.com",
-    blurb: "A choose-your-path money adventure — smart choices unlock the next chapter.",
-    skills: ["Decision-making", "Money smarts"],
-    ageBand: "Ages 8+",
+    category: "math",
+    blurb: "A number-quest adventure — solve math challenges to unlock each new chapter.",
+    skills: ["Arithmetic", "Problem-solving"],
+    ageBand: "Ages 6+",
     emoji: "🗺️",
     accent: ["#6366f1", "#4338ca"],
     desktopOnly: false,

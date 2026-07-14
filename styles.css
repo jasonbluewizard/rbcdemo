@@ -211,6 +211,34 @@ main { flex: 1; }
   align-items: stretch;
 }
 
+/* full-width labelled section dividers inside the grid */
+.grid__section {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: .15rem;
+  padding-bottom: .55rem;
+  border-bottom: 1px solid var(--border);
+}
+.grid__section:not(:first-child) { margin-top: 1.4rem; }
+.grid__section-title {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  font-size: 1.18rem;
+  font-weight: 800;
+  letter-spacing: -.01em;
+}
+.grid__section-title::before {
+  content: "";
+  width: 10px;
+  height: 22px;
+  border-radius: 3px;
+  background: var(--rbc-blue);
+}
+.grid__section--math .grid__section-title::before { background: var(--questor-green); }
+.grid__section-blurb { color: var(--text-muted); font-size: .92rem; }
+
 /* -------------------------------------------------------------------- card */
 .card {
   display: flex;
