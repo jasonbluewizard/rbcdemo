@@ -35,12 +35,23 @@
     var card = el("article", "card");
     card.setAttribute("role", "listitem");
 
-    /* ---- banner (gradient + emoji + optional desktop badge) ---- */
+    /* ---- banner: game logo on a dark, accent-tinted tile ---- */
     var a = (game.accent && game.accent[0]) || "#1d4ed8";
     var b = (game.accent && game.accent[1]) || "#0e7490";
     var bannerEl = el("div", "card__banner");
-    bannerEl.style.background = "linear-gradient(135deg, " + a + ", " + b + ")";
-    bannerEl.appendChild(el("span", "card__emoji", game.emoji || "🎮"));
+    bannerEl.style.background =
+      "linear-gradient(160deg, rgba(10,14,22,.70), rgba(11,15,23,.90)), " +
+      "linear-gradient(135deg, " + a + ", " + b + ")";
+
+    if (game.logo) {
+      var img = el("img", "card__logo");
+      img.src = game.logo;
+      img.alt = "";                 // decorative — the title is in the heading below
+      img.loading = "lazy";
+      bannerEl.appendChild(img);
+    } else {
+      bannerEl.appendChild(el("span", "card__emoji", game.emoji || "🎮"));
+    }
 
     if (game.desktopOnly) {
       var badge = el("span", "card__badge");
