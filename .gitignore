@@ -1,0 +1,15 @@
+# Dependencies (this project intentionally has none)
+node_modules/
+
+# Logs / OS / editor cruft
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Replit local state
+.upm/
+.config/
+.cache/
+.breakpoints

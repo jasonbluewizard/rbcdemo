@@ -1,0 +1,20 @@
+# Replit configuration for RBC Quest
+# ---------------------------------------------------------------------------
+# Press "Run" to preview in the Replit webview. To publish at rbcquest.com,
+# use Deploy → Static (publicDir "."), then attach the custom domain.
+
+run = "node server.js"
+entrypoint = "index.html"
+modules = ["nodejs-20"]
+
+[nix]
+channel = "stable-24_05"
+
+# Static deployment serves the files directly — no server process needed.
+[deployment]
+deploymentTarget = "static"
+publicDir = "."
+
+[[ports]]
+localPort = 3000
+externalPort = 80
