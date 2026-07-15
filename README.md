@@ -1,4 +1,4 @@
-# RBC Quest
+# Royal BankQuest
 
 A lightweight demo hub that links to **Questor Labs'** financial-literacy **edugames**,
 built for a pitch to RBC. (Questor Labs is the educational-games studio of Blue Wizard —

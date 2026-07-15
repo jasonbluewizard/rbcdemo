@@ -1,0 +1,13 @@
+{
+  "name": "Royal BankQuest",
+  "short_name": "BankQuest",
+  "description": "Play-to-learn money games by Questor Labs — instant-play on school Chromebooks.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#005DAA",
+  "theme_color": "#005DAA",
+  "icons": [
+    { "src": "assets/favicon.svg", "type": "image/svg+xml", "sizes": "any" },
+    { "src": "assets/apple-touch-icon.png", "type": "image/png", "sizes": "180x180" }
+  ]
+}

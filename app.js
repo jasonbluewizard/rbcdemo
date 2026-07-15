@@ -32,9 +32,11 @@
     return el("span", extra ? "badge " + extra : "badge", text);
   }
 
-  function buildCard(game) {
+  function buildCard(game, index) {
     var card = el("article", "card");
     card.setAttribute("role", "listitem");
+    // Subtle staggered rise-in on load (capped so late cards don't lag).
+    if (typeof index === "number") card.style.animationDelay = Math.min(index, 8) * 70 + "ms";
 
     /* ---- banner: light-blue tile with the game logo ---- */
     var banner = el("div", "card__banner");
@@ -94,7 +96,7 @@
     return link;
   }
 
-  function buildSection(group, list) {
+  function buildSection(group, list, startIndex) {
     var section = el("section", "section");
 
     var head = el("div", "section__head");
@@ -107,7 +109,7 @@
 
     var g = el("div", "grid");
     g.setAttribute("role", "list");
-    list.forEach(function (game) { g.appendChild(buildCard(game)); });
+    list.forEach(function (game, i) { g.appendChild(buildCard(game, (startIndex || 0) + i)); });
     section.appendChild(g);
 
     return section;
@@ -118,18 +120,20 @@
     grid.textContent = "";
     var frag = document.createDocumentFragment();
     var placed = {};
+    var order = 0;
 
     GROUPS.forEach(function (group) {
       var inGroup = games.filter(function (g) { return g.category === group.key; });
       if (!inGroup.length) return;
       inGroup.forEach(function (g) { placed[g.id] = true; });
-      frag.appendChild(buildSection(group, inGroup));
+      frag.appendChild(buildSection(group, inGroup, order));
+      order += inGroup.length;
     });
 
     // Any game without a matching category still shows, ungrouped, at the end.
     var leftovers = games.filter(function (g) { return !placed[g.id]; });
     if (leftovers.length) {
-      frag.appendChild(buildSection({ title: "More games", blurb: "" }, leftovers));
+      frag.appendChild(buildSection({ title: "More games", blurb: "" }, leftovers, order));
     }
 
     grid.appendChild(frag);
