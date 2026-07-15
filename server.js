@@ -57,6 +57,14 @@ const server = http.createServer((req, res) => {
   }
 
   fs.stat(filePath, (err, stat) => {
+    // Directory → serve its index.html (e.g. /finskool → finskool/index.html),
+    // matching how production static hosting (Replit) serves directory indexes.
+    if (!err && stat.isDirectory()) {
+      return fs.readFile(path.join(filePath, "index.html"), (e, data) =>
+        e ? send(res, 404, "Not found")
+          : send(res, 200, data, { "Content-Type": MIME[".html"] })
+      );
+    }
     if (err || !stat.isFile()) {
       if (!path.extname(filePath)) {
         // Clean URLs: try "<route>.html" first (e.g. /finskool → finskool.html),
