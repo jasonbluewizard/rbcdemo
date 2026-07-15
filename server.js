@@ -58,11 +58,16 @@ const server = http.createServer((req, res) => {
 
   fs.stat(filePath, (err, stat) => {
     if (err || !stat.isFile()) {
-      // Extensionless unknown route → serve the single-page app.
       if (!path.extname(filePath)) {
-        return fs.readFile(path.join(ROOT, "index.html"), (e, data) =>
-          e ? send(res, 404, "Not found") : send(res, 200, data, { "Content-Type": MIME[".html"] })
-        );
+        // Clean URLs: try "<route>.html" first (e.g. /finskool → finskool.html),
+        // then fall back to the single-page app shell (index.html).
+        return fs.readFile(filePath + ".html", (e, data) => {
+          if (!e) return send(res, 200, data, { "Content-Type": MIME[".html"] });
+          return fs.readFile(path.join(ROOT, "index.html"), (e2, data2) =>
+            e2 ? send(res, 404, "Not found")
+               : send(res, 200, data2, { "Content-Type": MIME[".html"] })
+          );
+        });
       }
       return send(res, 404, "Not found");
     }
