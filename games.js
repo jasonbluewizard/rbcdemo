@@ -23,7 +23,7 @@ window.GAMES = [
     title: "Last Resort",
     url: "https://pyramid2.replit.app/last-resort/",
     category: "fin-lit",
-    blurb: "Keep a wobbly island resort afloat — earn, spend, and invest your way back to five stars.",
+    blurb: "Run the last resort standing in a post-apocalyptic, zombie-overrun world — ration supplies, earn, and invest your way back to five stars.",
     skills: ["Budgeting", "Decision-making"],
     ageBand: "Ages 10+",
     logo: "assets/last-resort-logo.png",

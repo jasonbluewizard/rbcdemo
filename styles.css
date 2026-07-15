@@ -113,13 +113,29 @@ a:focus-visible { outline: 2px solid var(--rbc-blue-300); outline-offset: 3px; b
 /* ----------------------------------------------------------------- hero */
 .hero {
   position: relative;
-  background: var(--rbc-blue);
+  background:
+    radial-gradient(125% 85% at 50% -20%, #0a6cc4 0%, transparent 60%),
+    var(--rbc-blue);
   color: #fff;
   text-align: center;
   padding: clamp(44px, 7vw, 66px) clamp(20px, 5vw, 32px) clamp(40px, 6vw, 56px);
   overflow: hidden;
 }
-.hero__inner { position: relative; max-width: 720px; margin: 0 auto; }
+/* faint gold quest-sparkles drifting behind the hero content */
+.hero__decor { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.hero__spark {
+  position: absolute;
+  width: var(--s, 12px);
+  height: var(--s, 12px);
+  background: url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2024%2024'%3E%3Cpath%20d='M12%201%20L14.5%209.5%20L23%2012%20L14.5%2014.5%20L12%2023%20L9.5%2014.5%20L1%2012%20L9.5%209.5%20Z'%20fill='%23FFD200'/%3E%3C/svg%3E") center/contain no-repeat;
+  opacity: 0;
+  animation: twinkle 3.6s var(--ease-standard) var(--d, 0s) infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0; transform: scale(.6); }
+  50%      { opacity: .7; transform: scale(1); }
+}
+.hero__inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
 .hero__crest {
   display: inline-flex;
   background: #fff;
@@ -127,9 +143,11 @@ a:focus-visible { outline: 2px solid var(--rbc-blue-300); outline-offset: 3px; b
   padding: 10px 14px;
   box-shadow: 0 12px 28px -14px rgba(0,0,0,.55);
   margin-bottom: 22px;
+  animation: floaty 6s ease-in-out infinite;
 }
+@keyframes floaty { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 .hero__crest img { height: 60px; width: auto; display: block; }
-.hero__title { font-size: clamp(34px, 6vw, 48px); font-weight: 800; letter-spacing: -.02em; line-height: 1.08; }
+.hero__title { font-size: clamp(34px, 6vw, 48px); font-weight: 800; letter-spacing: -.02em; line-height: 1.08; text-shadow: 0 2px 14px rgba(0,0,0,.14); }
 .hero__tagline { margin-top: 12px; font-size: clamp(17px, 2.5vw, 20px); font-weight: 600; color: var(--rbc-blue-200); }
 .hero__sub { margin: 14px auto 0; max-width: 47ch; font-size: 16px; line-height: 1.6; color: #E3F4FF; }
 .hero__notes {
@@ -226,6 +244,25 @@ a:focus-visible { outline: 2px solid var(--rbc-blue-300); outline-offset: 3px; b
   background: var(--rbc-blue-100);
   border-bottom: 1px solid var(--line);
   overflow: hidden;
+}
+/* glossy light sweep across the tile on hover */
+.card__banner::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent 0%, rgba(255,255,255,.5) 50%, transparent 100%);
+  transform: skewX(-18deg);
+  opacity: 0;
+  pointer-events: none;
+}
+.card:hover .card__banner::after { animation: sheen .75s var(--ease-out); }
+@keyframes sheen {
+  0%   { left: -75%; opacity: 0; }
+  18%  { opacity: 1; }
+  100% { left: 130%; opacity: 0; }
 }
 .card__logo {
   height: 116px;
