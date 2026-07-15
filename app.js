@@ -1,24 +1,21 @@
 /* ============================================================================
  * RBC Quest — renderer
- * Builds the game cards from window.GAMES and wires up the mobile "best on
- * desktop" warning. No dependencies, no build step.
+ * Builds the labelled sections + game cards from window.GAMES, matching the
+ * "RBC Quest — Home" design. No dependencies, no build step.
+ * (Desktop guidance lives in the static hero note per the design; there is no
+ *  per-card device warning here.)
  * ==========================================================================*/
 (function () {
   "use strict";
 
   var grid = document.getElementById("game-grid");
-  var banner = document.getElementById("mobile-banner");
   var games = Array.isArray(window.GAMES) ? window.GAMES : [];
 
-  // Small screen OR touch device → treat as "mobile" for warnings.
-  function isSmallScreen() {
-    try {
-      return window.matchMedia("(max-width: 720px)").matches ||
-             window.matchMedia("(pointer: coarse)").matches;
-    } catch (e) {
-      return window.innerWidth <= 720;
-    }
-  }
+  // Ordered catalog sections, grouped by each game's `category`.
+  var GROUPS = [
+    { key: "fin-lit", title: "Financial literacy", blurb: "Real money skills — saving, budgeting, and smart spending." },
+    { key: "math",    title: "Early math",         blurb: "Number foundations — counting, comparison and problem-solving, geared to younger players." }
+  ];
 
   function isPlayableUrl(url) {
     return typeof url === "string" && /^https?:\/\//i.test(url.trim());
@@ -31,62 +28,53 @@
     return node;
   }
 
-  function buildCard(game, mobile) {
+  function badge(text, extra) {
+    return el("span", extra ? "badge " + extra : "badge", text);
+  }
+
+  function buildCard(game) {
     var card = el("article", "card");
     card.setAttribute("role", "listitem");
 
-    /* ---- banner: game logo on a dark, accent-tinted tile ---- */
-    var a = (game.accent && game.accent[0]) || "#1d4ed8";
-    var b = (game.accent && game.accent[1]) || "#0e7490";
-    var bannerEl = el("div", "card__banner");
-    bannerEl.style.background =
-      "linear-gradient(160deg, rgba(10,14,22,.70), rgba(11,15,23,.90)), " +
-      "linear-gradient(135deg, " + a + ", " + b + ")";
-
+    /* ---- banner: light-blue tile with the game logo ---- */
+    var banner = el("div", "card__banner");
     if (game.logo) {
       var img = el("img", "card__logo");
       img.src = game.logo;
-      img.alt = "";                 // decorative — the title is in the heading below
+      img.alt = "";              // decorative — the title is in the heading below
       img.loading = "lazy";
-      bannerEl.appendChild(img);
+      banner.appendChild(img);
     } else {
-      bannerEl.appendChild(el("span", "card__emoji", game.emoji || "🎮"));
+      banner.appendChild(el("span", "card__emoji", game.emoji || "🎮"));
     }
-
-    if (game.desktopOnly) {
-      var badge = el("span", "card__badge");
-      badge.appendChild(el("span", null, "🖥️"));
-      badge.appendChild(el("span", null, "Best on desktop"));
-      bannerEl.appendChild(badge);
-    }
-    card.appendChild(bannerEl);
+    card.appendChild(banner);
 
     /* ---- body ---- */
     var body = el("div", "card__body");
 
     var titleRow = el("div", "card__titlerow");
     titleRow.appendChild(el("h3", "card__title", game.title || "Untitled"));
-    if (game.ageBand) titleRow.appendChild(el("span", "card__age", game.ageBand));
+    if (game.ageBand) titleRow.appendChild(badge(game.ageBand, "card__age"));
     body.appendChild(titleRow);
 
     if (game.blurb) body.appendChild(el("p", "card__blurb", game.blurb));
 
     if (Array.isArray(game.skills) && game.skills.length) {
       var skills = el("div", "card__skills");
-      game.skills.forEach(function (s) { skills.appendChild(el("span", "chip", s)); });
+      game.skills.forEach(function (s) { skills.appendChild(badge(s)); });
       body.appendChild(skills);
     }
     card.appendChild(body);
 
-    /* ---- footer / action ---- */
+    /* ---- action ---- */
     var foot = el("div", "card__foot");
-    foot.appendChild(buildAction(game, mobile));
+    foot.appendChild(buildAction(game));
     card.appendChild(foot);
 
     return card;
   }
 
-  function buildAction(game, mobile) {
+  function buildAction(game) {
     var comingSoon = game.status === "coming-soon";
     var playable = !comingSoon && isPlayableUrl(game.url);
 
@@ -103,37 +91,30 @@
     link.appendChild(el("span", null, "Play"));
     link.appendChild(el("span", "btn__arrow", "▸"));
     link.setAttribute("aria-label", "Play " + (game.title || "game") + " (opens in a new tab)");
-
-    // On phones, warn before opening a desktop-only game.
-    if (game.desktopOnly && mobile) {
-      link.addEventListener("click", function (e) {
-        var ok = window.confirm(
-          (game.title || "This game") +
-          " is designed for a desktop or laptop and may not work well on a phone.\n\nOpen it anyway?"
-        );
-        if (!ok) e.preventDefault();
-      });
-    }
     return link;
   }
 
-  // Ordered catalog sections. Games are grouped by their `category` field.
-  var GROUPS = [
-    { key: "fin-lit", title: "Financial Literacy", blurb: "Real money skills — saving, budgeting, and smart spending." },
-    { key: "math",    title: "Early Math",         blurb: "Number foundations — counting, comparison and problem-solving, geared to younger players." }
-  ];
+  function buildSection(group, list) {
+    var section = el("section", "section");
 
-  function buildSectionHeader(group) {
-    var sec = el("div", "grid__section grid__section--" + group.key);
-    sec.appendChild(el("h3", "grid__section-title", group.title));
-    if (group.blurb) sec.appendChild(el("p", "grid__section-blurb", group.blurb));
-    return sec;
+    var head = el("div", "section__head");
+    var titleRow = el("div", "section__titlerow");
+    titleRow.appendChild(el("span", "section__bar"));
+    titleRow.appendChild(el("h3", "section__title", group.title));
+    head.appendChild(titleRow);
+    if (group.blurb) head.appendChild(el("p", "section__blurb", group.blurb));
+    section.appendChild(head);
+
+    var g = el("div", "grid");
+    g.setAttribute("role", "list");
+    list.forEach(function (game) { g.appendChild(buildCard(game)); });
+    section.appendChild(g);
+
+    return section;
   }
 
   function render() {
     if (!grid) return;
-    var mobile = isSmallScreen();
-
     grid.textContent = "";
     var frag = document.createDocumentFragment();
     var placed = {};
@@ -141,32 +122,18 @@
     GROUPS.forEach(function (group) {
       var inGroup = games.filter(function (g) { return g.category === group.key; });
       if (!inGroup.length) return;
-      frag.appendChild(buildSectionHeader(group));
-      inGroup.forEach(function (g) { placed[g.id] = true; frag.appendChild(buildCard(g, mobile)); });
+      inGroup.forEach(function (g) { placed[g.id] = true; });
+      frag.appendChild(buildSection(group, inGroup));
     });
-    // Any game without a matching category still shows (ungrouped, at the end).
-    games.filter(function (g) { return !placed[g.id]; })
-         .forEach(function (g) { frag.appendChild(buildCard(g, mobile)); });
+
+    // Any game without a matching category still shows, ungrouped, at the end.
+    var leftovers = games.filter(function (g) { return !placed[g.id]; });
+    if (leftovers.length) {
+      frag.appendChild(buildSection({ title: "More games", blurb: "" }, leftovers));
+    }
 
     grid.appendChild(frag);
-
-    // Show the top banner only on small screens when a game truly needs desktop.
-    var anyDesktopOnly = games.some(function (g) { return g.desktopOnly; });
-    if (banner) banner.hidden = !(mobile && anyDesktopOnly);
   }
-
-  // Wire the banner's dismiss button once.
-  if (banner) {
-    var close = banner.querySelector(".mobile-banner__close");
-    if (close) close.addEventListener("click", function () { banner.hidden = true; });
-  }
-
-  // Re-evaluate mobile state if the window is resized/rotated.
-  var resizeTimer;
-  window.addEventListener("resize", function () {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(render, 150);
-  });
 
   window.renderGames = render; // exposed for quick testing / re-render
   render();
