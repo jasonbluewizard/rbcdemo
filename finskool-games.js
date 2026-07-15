@@ -53,21 +53,21 @@ window.FINSKOOL_GAMES = [
     topic: "saving", ageKey: "8-10", ageBand: "Ages 8–10",
     blurb: "Help a thrifty squirrel stash acorns for winter — your first taste of saving up and setting a goal.",
     skills: ["Saving", "Goal-setting"], emoji: "🐿️", accent: ["#f59e0b", "#b45309"],
-    status: "live", url: "https://acorntrail.replit.app", logo: "assets/squirrel-stash-logo.png"
+    status: "live", url: "https://acorntrail.replit.app", logo: "/assets/squirrel-stash-logo.png"
   },
   {
     id: "monkey-money", title: "Monkey Money",
     topic: "banking", ageKey: "8-10", ageBand: "Ages 8–10",
     blurb: "Earn it, count it, spend it wisely — money basics with a cheeky monkey.",
     skills: ["Money basics", "Counting"], emoji: "🐵", accent: ["#22c55e", "#15803d"],
-    status: "live", url: "https://amuze.me", logo: "assets/monkey-money-logo.png"
+    status: "live", url: "https://amuze.me", logo: "/assets/monkey-money-logo.png"
   },
   {
     id: "greater-gator", title: "Greater Gator",
     topic: "foundations", ageKey: "8-10", ageBand: "Ages 8–10",
     blurb: "Feed the gator the bigger number — build the comparison and number sense every money decision starts with.",
     skills: ["Comparing", "Number sense"], emoji: "🐊", accent: ["#84cc16", "#3f6212"],
-    status: "live", url: "https://greatergator.replit.app", logo: "assets/greater-gator-logo.png"
+    status: "live", url: "https://greatergator.replit.app", logo: "/assets/greater-gator-logo.png"
   },
   {
     id: "piggy-bank-parade", title: "Piggy Bank Parade",
@@ -90,7 +90,7 @@ window.FINSKOOL_GAMES = [
     topic: "foundations", ageKey: "11-13", ageBand: "Ages 11–13",
     blurb: "A number-quest adventure — solve money-math challenges to unlock each new chapter.",
     skills: ["Arithmetic", "Problem-solving"], emoji: "🗺️", accent: ["#6366f1", "#4338ca"],
-    status: "live", url: "https://adv101.com", logo: "assets/adventure-101-logo.png"
+    status: "live", url: "https://adv101.com", logo: "/assets/adventure-101-logo.png"
   },
   {
     id: "budget-bites", title: "Budget Bites",
@@ -134,7 +134,7 @@ window.FINSKOOL_GAMES = [
     topic: "budgeting", ageKey: "14-16", ageBand: "Ages 14–16", featured: true,
     blurb: "Run the last resort standing in a zombie-overrun world — ration supplies, earn, and invest your way back to five stars.",
     skills: ["Budgeting", "Decision-making"], emoji: "🏝️", accent: ["#06b6d4", "#0e7490"],
-    status: "live", url: "https://pyramid2.replit.app/last-resort/", logo: "assets/last-resort-logo.png"
+    status: "live", url: "https://pyramid2.replit.app/last-resort/", logo: "/assets/last-resort-logo.png"
   },
   {
     id: "credit-clash", title: "Credit Clash",

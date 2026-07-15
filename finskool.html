@@ -2,110 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>DoughJo — Money games for every age</title>
-  <meta name="description" content="DoughJo — RBC's financial-literacy game portal. Play-to-learn money games across every age and topic, featured for ages 14–16. A concept mockup." />
-  <meta name="theme-color" content="#005DAA" />
-
-  <!-- Icons -->
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="manifest" href="site.webmanifest" />
-
-  <!-- Social / link preview -->
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="DoughJo" />
-  <meta property="og:title" content="DoughJo — Money games for every age" />
-  <meta property="og:description" content="RBC's financial-literacy game portal — play-to-learn money games across every age and topic, featured for ages 14–16." />
-  <meta property="og:image" content="assets/og-image.png" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="DoughJo — Money games for every age" />
-  <meta name="twitter:description" content="RBC's financial-literacy game portal — money games for every age, featured for ages 14–16." />
-  <meta name="twitter:image" content="assets/og-image.png" />
-
-  <!-- Fira Sans — RBC brand face (falls back to system-ui offline) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700;800&display=swap" />
-
-  <link rel="stylesheet" href="styles.css" />
+  <!-- Canonical page lives at /finskool/ (a directory index, so static hosts
+       like Replit serve it cleanly at /finskool). This root file just forwards
+       there, so /finskool.html keeps working too. -->
+  <link rel="canonical" href="/finskool/" />
+  <meta name="robots" content="noindex" />
+  <meta http-equiv="refresh" content="0; url=/finskool/" />
+  <script>location.replace("/finskool/" + location.search + location.hash);</script>
 </head>
-<body class="finskool">
-  <a class="skip-link" href="#games">Skip to games</a>
-
-  <!-- Top bar: RBC-owned brand -->
-  <nav class="topbar" aria-label="Brand">
-    <div class="topbar__brand">
-      <img class="topbar__rbc" src="assets/rbc-logo.png" alt="RBC" />
-      <span class="topbar__divider" aria-hidden="true"></span>
-      <span class="topbar__wordmark">DoughJo</span>
-    </div>
-    <div class="topbar__present">
-      <span class="topbar__concept">Financial-literacy game portal · concept</span>
-    </div>
-  </nav>
-
-  <!-- Hero -->
-  <header class="hero">
-    <div class="hero__decor" aria-hidden="true">
-      <span class="hero__spark" style="top:19%;left:13%;--s:14px;--d:0s"></span>
-      <span class="hero__spark" style="top:13%;left:61%;--s:9px;--d:2.1s"></span>
-      <span class="hero__spark" style="top:33%;left:85%;--s:12px;--d:1.1s"></span>
-      <span class="hero__spark" style="top:66%;left:19%;--s:9px;--d:.6s"></span>
-      <span class="hero__spark" style="top:71%;left:80%;--s:13px;--d:1.7s"></span>
-    </div>
-    <div class="hero__inner">
-      <span class="hero__crest"><img src="assets/rbc-logo.png" alt="RBC" width="60" height="79" /></span>
-      <h1 class="hero__title">DoughJo</h1>
-      <p class="hero__tagline">Train your money moves</p>
-      <p class="hero__sub">Level up real-world money skills through games — <strong>featured for ages&nbsp;14–16</strong>, with money games for younger kids and older teens too. RBC's financial-literacy playground.</p>
-      <div class="hero__notes">
-        <span class="hero__note">🎮 20+ money games</span>
-        <span class="hero__note">🎯 Featured for ages 14–16</span>
-        <span class="hero__note">🥋 Every belt, from beginner to boss</span>
-      </div>
-    </div>
-  </header>
-
-  <!-- Games -->
-  <main class="catalog" id="games">
-    <!-- Featured rail (ages 14–16) — rendered by finskool.js, never filtered -->
-    <div id="fs-featured"></div>
-
-    <div class="catalog__head">
-      <h2 class="catalog__heading">Browse the dojo</h2>
-      <p class="catalog__hint">Filter by age or topic to find your next game.</p>
-    </div>
-
-    <!-- Age + Topic filter chips -->
-    <div id="fs-filters" aria-label="Filters"></div>
-
-    <!-- Topic-grouped catalog -->
-    <div id="fs-browse" class="sections"></div>
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="site-footer__inner">
-      <div class="site-footer__brand">
-        <a href="https://questorlabs.com" target="_blank" rel="noopener noreferrer" aria-label="Questor Labs — questorlabs.com">
-          <img class="site-footer__logo" src="assets/questor-labs-logo.png" alt="Questor Labs" />
-        </a>
-        <div>
-          <p class="site-footer__tag">Games developed by Questor Labs</p>
-          <p class="site-footer__studio">The educational-games studio of Blue Wizard — “Make Learning Irresistible”</p>
-        </div>
-      </div>
-      <div class="site-footer__meta">
-        <p class="site-footer__mark">DoughJo</p>
-        <p class="site-footer__note">© RBC — a financial-literacy initiative · concept mockup</p>
-      </div>
-    </div>
-  </footer>
-
-  <!-- Data first, then the renderer. -->
-  <script src="finskool-games.js"></script>
-  <script src="finskool.js"></script>
+<body>
+  <p>Redirecting to <a href="/finskool/">DoughJo</a>…</p>
 </body>
 </html>
