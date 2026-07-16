@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- DoughJo — RBC financial-literacy game hub for teens 14+. Recreated from the provided mockup on the RBC Quest DS.
+Assumptions: dark "game mode" theme from the mockup (navy #030F23 ground, yellow = reward), Fira Sans body + Rokkitt slab for the brand voice, character/game key-art cropped from the mockup as placeholder art. Interactive: XP count-up, belt tweaks, category chips filter the game shelf, coming-soon notify toggles, avatar menu. -->
+<helmet>
+<link rel="stylesheet" href="_ds/rbc-quest-design-system-6aa4c9f0-fd65-4a08-95af-42dae44925de/tokens/fonts.css">
+<link rel="stylesheet" href="_ds/rbc-quest-design-system-6aa4c9f0-fd65-4a08-95af-42dae44925de/tokens/colors.css">
+<link rel="stylesheet" href="_ds/rbc-quest-design-system-6aa4c9f0-fd65-4a08-95af-42dae44925de/tokens/typography.css">
+<link rel="stylesheet" href="_ds/rbc-quest-design-system-6aa4c9f0-fd65-4a08-95af-42dae44925de/tokens/spacing.css">
+<link rel="stylesheet" href="_ds/rbc-quest-design-system-6aa4c9f0-fd65-4a08-95af-42dae44925de/styles.css">
+<script src="_ds/rbc-quest-design-system-6aa4c9f0-fd65-4a08-95af-42dae44925de/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@700;800;900&amp;display=swap">
+<style>
+@font-face{font-family:"Fira Sans";src:url("assets/fonts/FiraSans-ExtraBoldItalic.ttf") format("truetype");font-weight:800;font-style:italic;}
+html,body{margin:0;padding:0;background:#030F23;}
+a{color:#FFD200;}a:hover{color:#FFE566;}
+@keyframes toastIn{from{opacity:0;transform:translate(-50%,16px) scale(.97);}to{opacity:1;transform:translate(-50%,0) scale(1);}}
+@keyframes riseIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+@keyframes bob{from{transform:translateY(0);}to{transform:translateY(-7px);}}
+@keyframes bubbleBob{from{transform:rotate(2.5deg);}to{transform:translateY(-9px) rotate(3.8deg);}}
+@keyframes twinkle{0%,100%{opacity:.4;transform:scale(.8) rotate(8deg);}50%{opacity:1;transform:scale(1.2) rotate(16deg);}}
+@keyframes sheen{0%{transform:translateX(-60px) skewX(-18deg);}60%,100%{transform:translateX(920px) skewX(-18deg);}}
+@keyframes pulseGlow{0%,100%{box-shadow:0 5px 16px rgba(255,210,0,.45);}50%{box-shadow:0 7px 30px rgba(255,210,0,.16);}}
+@keyframes kenburns{from{transform:scale(1);}to{transform:scale(1.07) translateX(7px);}}
+@keyframes flicker{0%,100%{filter:drop-shadow(0 0 2px rgba(252,163,17,.3));}50%{filter:drop-shadow(0 0 10px rgba(252,163,17,.9));}}
+@keyframes glowDrift{0%,100%{opacity:.7;}50%{opacity:1;}}
+@keyframes logoSway{0%,100%{transform:rotate(-1deg) translateY(0);}50%{transform:rotate(1.1deg) translateY(-6px);}}
+@keyframes logoPop{0%{transform:scale(1) rotate(0);}30%{transform:scale(1.05) rotate(-2deg);}60%{transform:scale(1.03) rotate(1.5deg);}100%{transform:scale(1.04) rotate(0);}}
+@keyframes driftUp{0%{transform:translateY(0) rotate(45deg);opacity:0;}12%{opacity:var(--o,.5);}88%{opacity:var(--o,.5);}100%{transform:translateY(-560px) rotate(225deg);opacity:0;}}
+@keyframes gridPan{from{background-position:0 0;}to{background-position:120px 68px;}}
+</style>
+</helmet>
+<div style="min-height:100vh;min-width:1560px;background:#030F23;color:#EAF0FA;font-family:var(--font-brand);position:relative;overflow-x:clip;">
+  <div style="position:absolute;top:-120px;right:-60px;width:900px;height:640px;background:radial-gradient(closest-side, rgba(10,33,72,.85), rgba(3,15,35,0));pointer-events:none;animation:glowDrift 9s ease-in-out infinite;"></div>
+  <div style="position:absolute;bottom:-160px;left:-120px;width:760px;height:560px;background:radial-gradient(closest-side, rgba(0,58,117,.4), rgba(3,15,35,0));pointer-events:none;animation:glowDrift 12s ease-in-out 4s infinite;"></div>
+  <div style="position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(80,120,190,.05) 1px, transparent 1px),linear-gradient(90deg, rgba(80,120,190,.05) 1px, transparent 1px);background-size:120px 68px;animation:gridPan 60s linear infinite;-webkit-mask-image:radial-gradient(ellipse 90% 70% at 60% 30%, #000 20%, transparent 75%);mask-image:radial-gradient(ellipse 90% 70% at 60% 30%, #000 20%, transparent 75%);"></div>
+  <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
+    <span style="--o:.4;position:absolute;left:6%;bottom:-30px;width:10px;height:10px;border-radius:2px;background:linear-gradient(135deg,#FFE566,#DFA700);animation:driftUp 26s linear 0s infinite;"></span>
+    <span style="--o:.3;position:absolute;left:22%;bottom:-30px;width:7px;height:7px;border-radius:2px;background:#2E66C4;animation:driftUp 34s linear 8s infinite;"></span>
+    <span style="--o:.45;position:absolute;left:41%;bottom:-30px;width:12px;height:12px;border-radius:2px;background:linear-gradient(135deg,#FFE566,#C79000);animation:driftUp 30s linear 15s infinite;"></span>
+    <span style="--o:.3;position:absolute;left:58%;bottom:-30px;width:8px;height:8px;border-radius:2px;background:#1E4FA8;animation:driftUp 38s linear 4s infinite;"></span>
+    <span style="--o:.4;position:absolute;left:74%;bottom:-30px;width:9px;height:9px;border-radius:2px;background:linear-gradient(135deg,#FFD200,#DFA700);animation:driftUp 28s linear 20s infinite;"></span>
+    <span style="--o:.35;position:absolute;left:89%;bottom:-30px;width:7px;height:7px;border-radius:2px;background:#2E66C4;animation:driftUp 36s linear 12s infinite;"></span>
+    <span style="--o:.5;position:absolute;left:33%;bottom:-30px;width:5px;height:5px;border-radius:50%;background:#FFD200;animation:driftUp 24s linear 11s infinite;"></span>
+    <span style="--o:.5;position:absolute;left:66%;bottom:-30px;width:5px;height:5px;border-radius:50%;background:#9CC6EC;animation:driftUp 32s linear 26s infinite;"></span>
+  </div>
+  <div style="box-sizing:border-box;max-width:1600px;min-width:1560px;margin:0 auto;padding:0 42px;position:relative;">
+
+    <header style="display:flex;align-items:center;gap:14px;height:96px;position:relative;z-index:20;">
+      <img src="assets/rbc-logo.png" alt="RBC" style="height:70px;width:auto;display:block;transition:transform .18s;" style-hover="transform:scale(1.06);">
+      <img src="uploads/smalldoughjologo.png" alt="DoughJo" style="height:36px;width:auto;display:block;margin-right:20px;">
+      <nav style="display:flex;align-items:center;gap:44px;flex:1;justify-content:center;">
+        <button onClick="{{ navGames }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;color:#EAF0FA;font-family:inherit;font-weight:600;font-size:17px;padding:8px 2px;white-space:nowrap;transition:color .15s,transform .15s;" style-hover="color:#FFD200;transform:translateY(-2px);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7" width="19" height="10.5" rx="5"></rect><path d="M7 10.5v4M5 12.5h4"></path><circle cx="15" cy="14" r="1" fill="currentColor" stroke="none"></circle><circle cx="17.8" cy="11" r="1" fill="currentColor" stroke="none"></circle></svg>
+          Games</button>
+        <button onClick="{{ navProgress }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;color:#EAF0FA;font-family:inherit;font-weight:600;font-size:17px;padding:8px 2px;white-space:nowrap;transition:color .15s,transform .15s;" style-hover="color:#FFD200;transform:translateY(-2px);">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 20v-5M12 20V9M19 20v-8"></path></svg>
+          Progress</button>
+        <button onClick="{{ navSkills }}" style="display:flex;align-items:center;gap:10px;background:none;border:none;cursor:pointer;color:#EAF0FA;font-family:inherit;font-weight:600;font-size:17px;padding:8px 2px;white-space:nowrap;transition:color .15s,transform .15s;" style-hover="color:#FFD200;transform:translateY(-2px);">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 8.8 12 13.6l9.5-4.8L12 4z"></path><path d="M6.2 11v4.6c0 1.5 2.6 2.9 5.8 2.9s5.8-1.4 5.8-2.9V11"></path><path d="M21.5 9v5"></path></svg>
+          Money Skills</button>
+      </nav>
+      <div style="display:flex;align-items:center;gap:16px;position:relative;">
+        <span style="display:inline-flex;transition:transform .18s,filter .18s;" style-hover="transform:translateY(-2px);filter:brightness(1.07);"><x-import component-from-global-scope="RBCQuestDesignSystem_6aa4c9.Button" variant="reward" size="md" onClick="{{ onJump }}" dc-props="{{ jumpBtnProps }}" hint-size="126px,46px">Jump in →</x-import></span>
+        <button onClick="{{ avatarToggle }}" style="display:flex;align-items:center;gap:7px;background:none;border:none;cursor:pointer;padding:0;">
+          <img src="assets/avatar.png" alt="Kai — signed in" style="width:52px;height:52px;border-radius:50%;display:block;box-shadow:0 0 0 2px rgba(115,176,227,.7);transition:transform .18s,box-shadow .18s;" style-hover="transform:scale(1.1);box-shadow:0 0 0 2.5px #FFD200;">
+          <span style="{{ chevStyle }}">▾</span>
+        </button>
+        <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+          <div style="position:absolute;top:58px;right:0;background:#0A1830;border:1px solid rgba(140,165,210,.3);border-radius:12px;min-width:208px;padding:8px;box-shadow:0 14px 38px rgba(0,0,0,.5);z-index:80;">
+            <button onClick="{{ menuProfile }}" style="display:flex;gap:10px;align-items:center;width:100%;background:none;border:none;cursor:pointer;color:#EAF0FA;font-family:inherit;font-weight:600;font-size:15px;padding:10px 12px;border-radius:8px;text-align:left;" style-hover="background:rgba(255,255,255,.07);">👤 My profile</button>
+            <button onClick="{{ menuBelts }}" style="display:flex;gap:10px;align-items:center;width:100%;background:none;border:none;cursor:pointer;color:#EAF0FA;font-family:inherit;font-weight:600;font-size:15px;padding:10px 12px;border-radius:8px;text-align:left;" style-hover="background:rgba(255,255,255,.07);">🥋 My belts</button>
+            <button onClick="{{ menuSignOut }}" style="display:flex;gap:10px;align-items:center;width:100%;background:none;border:none;cursor:pointer;color:#93A3C4;font-family:inherit;font-weight:600;font-size:15px;padding:10px 12px;border-radius:8px;text-align:left;" style-hover="background:rgba(255,255,255,.07);">Sign out</button>
+          </div>
+        </sc-if>
+      </div>
+    </header>
+
+    <div style="position:relative;height:508px;" data-screen-label="Hero">
+      <img src="uploads/char1.png" alt="DoughJo guide holding a rising stock chart" style="position:absolute;top:26px;right:202px;width:612px;height:346px;z-index:1;pointer-events:none;animation:bob 5.4s ease-in-out infinite alternate;">
+      <div style="position:absolute;top:44px;right:0;width:228px;background:#EFDFC2;color:#131A33;border-radius:22px;padding:26px 26px 28px;transform:rotate(2.5deg);z-index:2;box-shadow:0 10px 30px rgba(0,0,0,.35);animation:bubbleBob 4.6s ease-in-out infinite alternate;">
+        <div style="position:absolute;left:-15px;bottom:44px;width:26px;height:26px;background:#EFDFC2;clip-path:polygon(100% 0, 100% 100%, 0 62%);transform:rotate(6deg);"></div>
+        <div style="font-family:'Rokkitt','Fira Sans',serif;font-weight:900;font-size:34px;line-height:1.12;letter-spacing:.3px;">NO CAP.<br><span style="color:#1E56C8;">ALL</span><br>CAPITAL.</div>
+      </div>
+      <span style="position:absolute;right:180px;top:20px;color:#FFD200;font-size:15px;z-index:2;animation:twinkle 3.8s ease-in-out infinite;">✦</span>
+      <span style="position:absolute;right:8px;top:352px;color:#FFD200;font-size:12px;z-index:2;animation:twinkle 5s ease-in-out 1.2s infinite;">✦</span>
+      <span style="position:absolute;right:236px;top:328px;color:#F0E7D2;font-size:11px;z-index:2;animation:twinkle 4.4s ease-in-out 2s infinite;">✦</span>
+      <div style="position:absolute;right:6px;top:340px;width:15px;height:15px;background:linear-gradient(135deg,#FFE566,#DFA700);transform:rotate(45deg);border-radius:3px;z-index:2;animation:bob 4.8s ease-in-out 1s infinite alternate;box-shadow:0 0 14px rgba(255,210,0,.4);"></div>
+      <div style="position:absolute;right:-26px;top:300px;z-index:0;">
+        <div style="width:150px;height:5px;background:#1E4FA8;border-radius:3px;transform:rotate(-38deg);"></div>
+        <div style="width:110px;height:5px;background:#FFD200;border-radius:3px;transform:rotate(-38deg) translate(28px,16px);"></div>
+      </div>
+      <div style="position:absolute;left:-84px;top:206px;z-index:0;opacity:.9;">
+        <div style="width:150px;height:6px;background:#1E4FA8;border-radius:3px;transform:rotate(-38deg);"></div>
+        <div style="width:150px;height:6px;background:#2E66C4;border-radius:3px;transform:rotate(-38deg) translate(22px,16px);"></div>
+        <div style="width:96px;height:6px;background:#FFD200;border-radius:3px;transform:rotate(-38deg) translate(46px,28px);"></div>
+      </div>
+
+      <div style="position:relative;z-index:2;width:700px;padding-top:26px;">
+        <div style="animation:riseIn .5s cubic-bezier(.16,1,.3,1) both;"><span style="display:inline-block;background:#FFD200;color:#08122B;transform:skew(-6deg) rotate(-1deg);padding:11px 26px;font-style:italic;font-weight:800;font-size:20px;letter-spacing:.05em;box-shadow:0 8px 22px rgba(0,0,0,.4);">MONEY, BUT MAKE IT FUN.</span></div>
+        <div style="width:656px;margin:22px 0 0 -4px;animation:riseIn .55s cubic-bezier(.16,1,.3,1) .08s both;">
+          <div style="animation:logoSway 7s ease-in-out infinite;transform-origin:35% 60%;">
+            <img src="uploads/doughjologo.png" alt="DoughJo" onClick="{{ logoClick }}" style="display:block;width:656px;height:auto;cursor:pointer;filter:drop-shadow(0 12px 30px rgba(0,0,0,.35));transition:filter .25s,transform .3s cubic-bezier(.34,1.56,.64,1);" style-hover="filter:drop-shadow(0 16px 38px rgba(0,0,0,.45)) drop-shadow(0 0 26px rgba(255,210,0,.35));transform:scale(1.03) rotate(-.8deg);">
+          </div>
+        </div>
+        <h1 style="font-weight:800;font-size:48px;line-height:1.15;color:#FFFFFF;margin:28px 0 10px;animation:riseIn .55s cubic-bezier(.16,1,.3,1) .16s both;">Train your <span style="color:#FFD200;">money moves</span></h1>
+        <p style="font-size:23px;color:#A9B7D1;margin:0 0 30px;line-height:1.5;animation:riseIn .55s cubic-bezier(.16,1,.3,1) .22s both;">Play games. Build skills. Own your future.</p>
+        <div style="display:flex;align-items:center;gap:18px;animation:riseIn .55s cubic-bezier(.16,1,.3,1) .3s both;">
+          <span style="display:inline-flex;transition:transform .18s,filter .18s;" style-hover="transform:translateY(-2px);filter:brightness(1.07);"><x-import component-from-global-scope="RBCQuestDesignSystem_6aa4c9.Button" variant="reward" size="lg" onClick="{{ onStart }}" dc-props="{{ startBtnProps }}" hint-size="230px,58px">Start playing →</x-import></span>
+          <button onClick="{{ onBrowse }}" style="background:transparent;border:1.5px solid rgba(240,231,210,.55);color:#F0E7D2;border-radius:12px;padding:17px 30px;font-family:inherit;font-weight:700;font-size:19px;cursor:pointer;transition:background .15s,border-color .15s,transform .15s;" style-hover="background:rgba(255,255,255,.07);border-color:rgba(240,231,210,.9);transform:translateY(-2px);">Browse games</button>
+        </div>
+      </div>
+
+      <div style="{{ panelGlow }}">
+        <div style="display:flex;align-items:center;gap:24px;background:#061226;border:1.5px solid rgba(240,231,210,.55);border-radius:18px;padding:18px 26px 18px 20px;">
+          <img src="assets/belt-shield.png" alt="Belt rank badge" style="height:108px;width:auto;display:block;transition:transform .25s;" style-hover="transform:rotate(-5deg) scale(1.06);">
+          <div style="flex:1;min-width:0;">
+            <div style="font-weight:700;font-size:27px;color:#F5EFE2;letter-spacing:.1px;margin-bottom:9px;">{{ beltTitle }}</div>
+            <div style="height:28px;border-radius:9px;background:#08142B;border:1px solid rgba(120,145,190,.4);overflow:hidden;display:flex;">
+              <div style="{{ xpFillStyle }}"><span style="font-weight:800;font-size:16px;white-space:nowrap;font-variant-numeric:tabular-nums;position:relative;z-index:1;">{{ xpLabel }}</span><span style="position:absolute;top:0;bottom:0;left:0;width:52px;background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);animation:sheen 3.4s ease-in-out 1.4s infinite;pointer-events:none;"></span></div>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:11px;align-items:center;">
+              <sc-for list="{{ belts }}" as="b" hint-placeholder-count="8">
+                <span title="{{ b.name }}" style="{{ b.wrapStyle }}" style-hover="transform:translateY(-3px) scale(1.18);">
+                  <svg width="32" height="21" viewBox="0 0 36 24" style="display:block;">
+                    <path d="M18 12 C10 3, 3 4, 4 12 C3 20, 10 21, 18 12 Z" fill="{{ b.fill }}" stroke="{{ b.stroke }}" stroke-width="1.3"></path>
+                    <path d="M18 12 C26 3, 33 4, 32 12 C33 20, 26 21, 18 12 Z" fill="{{ b.fill }}" stroke="{{ b.stroke }}" stroke-width="1.3"></path>
+                    <path d="M15 14 L12 22" stroke="{{ b.tail }}" stroke-width="2.8" stroke-linecap="round" fill="none"></path>
+                    <path d="M21 14 L24 22" stroke="{{ b.tail }}" stroke-width="2.8" stroke-linecap="round" fill="none"></path>
+                    <circle cx="18" cy="12" r="3.6" fill="{{ b.fill }}" stroke="{{ b.stroke }}" stroke-width="1.3"></circle>
+                  </svg>
+                </span>
+              </sc-for>
+            </div>
+          </div>
+          <div style="align-self:stretch;width:1px;background:rgba(240,231,210,.18);"></div>
+          <div style="min-width:126px;display:flex;flex-direction:column;align-items:center;gap:3px;transition:transform .2s;cursor:default;" style-hover="transform:scale(1.07);">
+            <div style="display:flex;align-items:center;gap:11px;color:#F0E7D2;">
+              <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="7" width="19" height="10.5" rx="5"></rect><path d="M7 10.5v4M5 12.5h4"></path><circle cx="15" cy="14" r="1" fill="currentColor" stroke="none"></circle><circle cx="17.8" cy="11" r="1" fill="currentColor" stroke="none"></circle></svg>
+              <span style="font-family:'Rokkitt','Fira Sans',serif;font-weight:800;font-size:38px;line-height:1;">{{ gamesCompleted }}</span>
+            </div>
+            <div style="font-size:15px;color:#C7D2E8;text-align:center;line-height:1.25;">games<br>completed</div>
+          </div>
+          <div style="align-self:stretch;width:1px;background:rgba(240,231,210,.18);"></div>
+          <div style="min-width:112px;display:flex;flex-direction:column;align-items:center;gap:3px;transition:transform .2s;cursor:default;" style-hover="transform:scale(1.07);">
+            <div style="display:flex;align-items:center;gap:9px;color:#F0E7D2;">
+              <span style="font-size:27px;line-height:1;display:inline-block;transition:transform .2s;cursor:default;animation:flicker 2.2s ease-in-out infinite;" style-hover="transform:scale(1.25) rotate(-8deg);">🔥</span>
+              <span style="font-family:'Rokkitt','Fira Sans',serif;font-weight:800;font-size:38px;line-height:1;">{{ streak }}</span>
+            </div>
+            <div style="font-size:15px;color:#C7D2E8;text-align:center;line-height:1.25;">day streak</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section ref="{{ gamesRef }}" style="margin-top:30px;" data-screen-label="Featured games">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px;">
+        <span style="display:inline-block;">
+          <span style="display:block;width:30px;height:3.5px;background:#2E66C4;border-radius:2px;transform:rotate(-32deg) translate(2px,4px);"></span>
+          <span style="display:block;width:22px;height:3.5px;background:#FFD200;border-radius:2px;transform:rotate(-32deg) translate(10px,6px);"></span>
+        </span>
+        <h2 style="font-weight:800;font-size:29px;color:#F0E7D2;margin:0;white-space:nowrap;">Featured Games</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:26px;">
+        <div style="{{ card1Dim }}">
+          <div style="border:1px solid rgba(255,210,0,.45);border-radius:14px;overflow:hidden;background:#071328;transition:transform .2s,box-shadow .2s,border-color .2s;" style-hover="transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.45);border-color:rgba(255,210,0,.8);">
+            <img src="assets/art-last-resort.png" alt="Last Resort — budgeting survival game key art" style="width:100%;height:168px;object-fit:cover;object-position:left center;display:block;transform-origin:left center;animation:kenburns 15s ease-in-out infinite alternate;transition:filter .25s;" style-hover="filter:brightness(1.12) saturate(1.08);">
+            <div style="display:flex;align-items:center;gap:16px;padding:12px 16px;background:#050F22;border-top:1px solid rgba(140,165,210,.22);">
+              <span style="display:flex;align-items:center;gap:7px;color:#C7D2E8;font-weight:600;font-size:15px;white-space:nowrap;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"></circle><path d="M3.5 19.5c0-3.1 2.4-5.2 5.5-5.2s5.5 2.1 5.5 5.2"></path><path d="M15.5 5.6a3.2 3.2 0 0 1 0 5"></path><path d="M17.5 14.6c1.9.6 3 2.2 3 4.4"></path></svg>Ages 14–16</span>
+              <span style="display:flex;align-items:center;gap:7px;color:#C7D2E8;font-weight:600;font-size:15px;white-space:nowrap;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5V12l3 2"></path></svg>5–10 min</span>
+              <span style="flex:1;"></span>
+              <span style="display:inline-flex;transition:transform .18s,filter .18s;" style-hover="transform:translateY(-2px);filter:brightness(1.1);"><x-import component-from-global-scope="RBCQuestDesignSystem_6aa4c9.Button" variant="reward" size="sm" onClick="{{ onPlayNow }}" dc-props="{{ playBtnProps }}" hint-size="106px,34px">PLAY NOW</x-import></span>
+            </div>
+          </div>
+        </div>
+        <div style="{{ card2Dim }}">
+          <div style="border:1px solid rgba(140,165,210,.35);border-radius:14px;overflow:hidden;background:#071328;transition:transform .2s,box-shadow .2s,border-color .2s;" style-hover="transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.45);border-color:rgba(138,99,232,.7);">
+            <img src="assets/art-credit-clash.png" alt="Credit Clash — credit and debt card battle key art" style="width:100%;height:168px;object-fit:cover;object-position:left center;display:block;transform-origin:left center;animation:kenburns 17s ease-in-out -6s infinite alternate;transition:filter .25s;" style-hover="filter:brightness(1.12) saturate(1.08);">
+            <div style="display:flex;align-items:center;gap:16px;padding:12px 16px;background:#050F22;border-top:1px solid rgba(140,165,210,.22);">
+              <span style="display:flex;align-items:center;gap:7px;color:#C7D2E8;font-weight:600;font-size:15px;white-space:nowrap;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"></circle><path d="M3.5 19.5c0-3.1 2.4-5.2 5.5-5.2s5.5 2.1 5.5 5.2"></path><path d="M15.5 5.6a3.2 3.2 0 0 1 0 5"></path><path d="M17.5 14.6c1.9.6 3 2.2 3 4.4"></path></svg>Ages 14–16</span>
+              <span style="display:flex;align-items:center;gap:7px;color:#C7D2E8;font-weight:600;font-size:15px;white-space:nowrap;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5V12l3 2"></path></svg>5–10 min</span>
+              <span style="flex:1;"></span>
+              <button onClick="{{ notifyCredit }}" style="{{ notifyCreditStyle }}">{{ notifyCreditLabel }}</button>
+            </div>
+          </div>
+        </div>
+        <div style="{{ card3Dim }}">
+          <div style="border:1px solid rgba(140,165,210,.35);border-radius:14px;overflow:hidden;background:#071328;transition:transform .2s,box-shadow .2s,border-color .2s;" style-hover="transform:translateY(-5px);box-shadow:0 16px 40px rgba(0,0,0,.45);border-color:rgba(46,158,91,.7);">
+            <img src="assets/art-ticker.png" alt="Ticker — investing racing game key art" style="width:100%;height:168px;object-fit:cover;object-position:left center;display:block;transform-origin:left center;animation:kenburns 19s ease-in-out -11s infinite alternate;transition:filter .25s;" style-hover="filter:brightness(1.12) saturate(1.08);">
+            <div style="display:flex;align-items:center;gap:16px;padding:12px 16px;background:#050F22;border-top:1px solid rgba(140,165,210,.22);">
+              <span style="display:flex;align-items:center;gap:7px;color:#C7D2E8;font-weight:600;font-size:15px;white-space:nowrap;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.5"></circle><path d="M3.5 19.5c0-3.1 2.4-5.2 5.5-5.2s5.5 2.1 5.5 5.2"></path><path d="M15.5 5.6a3.2 3.2 0 0 1 0 5"></path><path d="M17.5 14.6c1.9.6 3 2.2 3 4.4"></path></svg>Ages 14–16</span>
+              <span style="display:flex;align-items:center;gap:7px;color:#C7D2E8;font-weight:600;font-size:15px;white-space:nowrap;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5V12l3 2"></path></svg>5–10 min</span>
+              <span style="flex:1;"></span>
+              <button onClick="{{ notifyTicker }}" style="{{ notifyTickerStyle }}">{{ notifyTickerLabel }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:28px;padding-bottom:46px;" data-screen-label="Topic chips">
+      <span style="{{ chipBudgetWrap }}">
+        <button onClick="{{ chipBudget }}" style="display:flex;align-items:center;gap:10px;background:rgba(255,210,0,.07);border:1.5px solid rgba(255,210,0,.75);color:#E7EDF7;border-radius:999px;padding:13px 22px;font-family:inherit;font-weight:600;font-size:16px;white-space:nowrap;cursor:pointer;transition:background .15s,transform .15s;" style-hover="background:rgba(255,210,0,.16);">
+          <span style="color:#FFD200;display:inline-flex;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 12V3"></path><path d="M12 12l7.8 4.5"></path></svg></span>
+          Budgeting</button>
+      </span>
+      <span style="{{ chipCreditWrap }}">
+        <button onClick="{{ chipCredit }}" style="display:flex;align-items:center;gap:10px;background:rgba(138,99,232,.09);border:1.5px solid rgba(138,99,232,.75);color:#E7EDF7;border-radius:999px;padding:13px 22px;font-family:inherit;font-weight:600;font-size:16px;white-space:nowrap;cursor:pointer;transition:background .15s,transform .15s;" style-hover="background:rgba(138,99,232,.18);">
+          <span style="color:#A98BF0;display:inline-flex;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2.5" y="5.5" width="19" height="13" rx="2.5"></rect><path d="M2.5 10h19"></path><path d="M6 15h4"></path></svg></span>
+          Credit &amp; Debt</button>
+      </span>
+      <span style="{{ chipInvestWrap }}">
+        <button onClick="{{ chipInvest }}" style="display:flex;align-items:center;gap:10px;background:rgba(46,158,91,.09);border:1.5px solid rgba(46,158,91,.8);color:#E7EDF7;border-radius:999px;padding:13px 22px;font-family:inherit;font-weight:600;font-size:16px;white-space:nowrap;cursor:pointer;transition:background .15s,transform .15s;" style-hover="background:rgba(46,158,91,.18);">
+          <span style="color:#49C57E;display:inline-flex;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"></path><path d="M15.5 7H21v5.5"></path></svg></span>
+          Investing</button>
+      </span>
+      <button onClick="{{ chipFraud }}" style="display:flex;align-items:center;gap:10px;background:#D6402B;border:1.5px solid #FF7A64;color:#FFFFFF;border-radius:999px;padding:13px 22px;font-family:inherit;font-weight:700;font-size:16px;white-space:nowrap;cursor:pointer;transition:filter .15s,transform .15s;" style-hover="filter:brightness(1.12);transform:translateY(-2px);">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 2.8v5.4c0 4.3-2.9 7.3-7 8.8-4.1-1.5-7-4.5-7-8.8V5.8L12 3z"></path><path d="M9 11.6l2 2 4-4.2"></path></svg>
+        Fraud &amp; Safety</button>
+      <button onClick="{{ chipTime }}" style="display:flex;align-items:center;gap:10px;background:rgba(115,176,227,.07);border:1.5px solid rgba(115,176,227,.65);color:#E7EDF7;border-radius:999px;padding:13px 22px;font-family:inherit;font-weight:600;font-size:16px;white-space:nowrap;cursor:pointer;transition:background .15s,transform .15s;" style-hover="background:rgba(115,176,227,.16);">
+        <span style="color:#9CC6EC;display:inline-flex;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13.5" r="8"></circle><path d="M12 13.5V9.8"></path><path d="M9.5 2h5"></path><path d="M12 2v3.5"></path></svg></span>
+        5–10 min games</button>
+      <button onClick="{{ chipWorld }}" style="display:flex;align-items:center;gap:10px;background:rgba(76,134,216,.08);border:1.5px solid rgba(76,134,216,.7);color:#E7EDF7;border-radius:999px;padding:13px 22px;font-family:inherit;font-weight:600;font-size:16px;white-space:nowrap;cursor:pointer;transition:background .15s,transform .15s;" style-hover="background:rgba(76,134,216,.17);">
+        <span style="color:#7FAEE8;display:inline-flex;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><ellipse cx="12" cy="12" rx="4" ry="9"></ellipse><path d="M3 12h18"></path></svg></span>
+        Real-world skills</button>
+      <button onClick="{{ chipWebinar }}" style="display:flex;align-items:center;gap:10px;background:rgba(115,176,227,.07);border:1.5px solid rgba(115,176,227,.55);color:#E7EDF7;border-radius:999px;padding:13px 22px;font-family:inherit;font-weight:600;font-size:16px;white-space:nowrap;cursor:pointer;transition:background .15s,transform .15s;" style-hover="background:rgba(115,176,227,.15);">
+        <span style="color:#FFD200;display:inline-flex;"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4 2.5 8.8 12 13.6l9.5-4.8L12 4z"></path><path d="M6.2 11v4.6c0 1.5 2.6 2.9 5.8 2.9s5.8-1.4 5.8-2.9V11"></path><path d="M21.5 9v5"></path></svg></span>
+        No boring webinars</button>
+    </div>
+
+    <sc-if value="{{ toastOpen }}" hint-placeholder-val="{{ false }}">
+      <div style="position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#F4EDDD;color:#0B1733;border-radius:12px;padding:14px 24px;font-weight:700;font-size:16px;box-shadow:0 12px 34px rgba(0,0,0,.5);z-index:90;animation:toastIn .32s cubic-bezier(.34,1.56,.64,1);max-width:640px;text-align:center;">{{ toastText }}</div>
+    </sc-if>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;belt&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;yellow&quot;,&quot;options&quot;:[&quot;white&quot;,&quot;yellow&quot;,&quot;orange&quot;,&quot;green&quot;,&quot;blue&quot;,&quot;purple&quot;,&quot;brown&quot;,&quot;black&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Player&quot;},&quot;xp&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:620,&quot;min&quot;:0,&quot;max&quot;:1000,&quot;step&quot;:10,&quot;unit&quot;:&quot;XP&quot;,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Player&quot;},&quot;streak&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:7,&quot;min&quot;:0,&quot;max&quot;:99,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Player&quot;}}">
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { xpShown: 0, toast: null, menuOpen: false, filter: null, notifiedCredit: false, notifiedTicker: false, glow: false };
+    this.gamesRef = React.createRef();
+    this._raf = null; this._t = null; this._g = null;
+  }
+  xp() { const v = Number(this.props.xp); return isFinite(v) ? Math.max(0, Math.min(1000, v)) : 620; }
+  componentDidMount() { this._start = setTimeout(() => this.animateXp(this.xp()), 350); }
+  componentDidUpdate(prevProps) {
+    if ((prevProps && prevProps.xp) !== this.props.xp) this.animateXp(this.xp());
+    else if (!this._animating && !this._start && this.state.xpShown !== this.xp()) this.animateXp(this.xp());
+  }
+  componentWillUnmount() { cancelAnimationFrame(this._raf); clearTimeout(this._t); clearTimeout(this._g); clearTimeout(this._start); }
+  animateXp(target) {
+    cancelAnimationFrame(this._raf);
+    this._start = null; this._animating = true;
+    const from = this.state.xpShown, t0 = performance.now(), dur = 1100;
+    const step = (t) => {
+      const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3);
+      this.setState({ xpShown: Math.round(from + (target - from) * e) });
+      if (p < 1) this._raf = requestAnimationFrame(step); else this._animating = false;
+    };
+    this._raf = requestAnimationFrame(step);
+  }
+  say(msg) { clearTimeout(this._t); this.setState({ toast: msg }); this._t = setTimeout(() => this.setState({ toast: null }), 3200); }
+  glowPanel() { this.setState({ glow: true }); clearTimeout(this._g); this._g = setTimeout(() => this.setState({ glow: false }), 1400); }
+  scrollGames() { const el = this.gamesRef.current; if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 24, behavior: 'smooth' }); }
+  toggleFilter(cat) { this.setState(s => ({ filter: s.filter === cat ? null : cat })); }
+  renderVals() {
+    if (!this._kicked) { this._kicked = true; setTimeout(() => { if (!this._animating && this.state.xpShown !== this.xp()) this.animateXp(this.xp()); }, 500); }
+    const BELTS = [
+      ['white', '#F2EDE0', 'Fresh Dough'], ['yellow', '#FFD200', 'Money Rookie'], ['orange', '#FCA311', 'Budget Brawler'],
+      ['green', '#2E9E5B', 'Savings Scrapper'], ['blue', '#4C9FE0', 'Credit Cadet'], ['purple', '#8A63E8', 'Portfolio Prodigy'],
+      ['brown', '#8B5E3C', 'Market Maverick'], ['black', '#525F7F', 'Money Sensei']
+    ];
+    const cap = s => s[0].toUpperCase() + s.slice(1);
+    const beltKey = BELTS.some(b => b[0] === this.props.belt) ? this.props.belt : 'yellow';
+    const cur = BELTS.findIndex(b => b[0] === beltKey);
+    const beltColor = BELTS[cur][1];
+    const belts = BELTS.map(([k, c, n], i) => {
+      const got = i <= cur, curr = i === cur;
+      return {
+        name: cap(k) + ' Belt — ' + n + (got ? '' : ' (locked)'),
+        fill: c,
+        stroke: k === 'black' ? 'rgba(242,237,224,.55)' : 'rgba(0,0,0,.3)',
+        tail: c,
+        wrapStyle: { display: 'inline-flex', padding: '3px 4px', borderRadius: '8px', opacity: got ? 1 : .55, filter: got ? 'none' : 'saturate(.75)', boxShadow: curr ? ('0 0 0 1.5px ' + c + '99, 0 0 12px ' + c + '55') : 'none', transform: curr ? 'translateY(-1px)' : 'none', transition: 'box-shadow .3s, transform .2s' }
+      };
+    });
+    const shown = Math.max(0, Math.min(1000, this.state.xpShown));
+    const pct = shown / 10;
+    const darkLabel = ['white', 'yellow', 'orange'].indexOf(beltKey) >= 0;
+    const fmt = n => n.toLocaleString('en-CA');
+    const streak = isFinite(Number(this.props.streak)) ? Math.max(0, Math.round(Number(this.props.streak))) : 7;
+    const f = this.state.filter;
+    const dim = cat => ({ transition: 'opacity .35s, filter .35s', opacity: !f || f === cat ? 1 : .22, filter: !f || f === cat ? 'none' : 'grayscale(.85)' });
+    const ring = (cat, c) => ({ display: 'inline-flex', borderRadius: '999px', transition: 'box-shadow .2s', boxShadow: f === cat ? '0 0 0 2.5px ' + c + ', 0 0 18px ' + c + '66' : 'none' });
+    const notifBase = { fontFamily: 'inherit', cursor: 'pointer', borderRadius: '9px', padding: '10px 18px', fontWeight: 800, fontSize: '13.5px', letterSpacing: '.07em', transition: 'all .2s', whiteSpace: 'nowrap' };
+    const notif = on => on
+      ? { ...notifBase, background: 'rgba(255,210,0,.14)', border: '1.5px solid #FFD200', color: '#FFD200' }
+      : { ...notifBase, background: 'rgba(255,255,255,.05)', border: '1.5px solid rgba(147,163,196,.5)', color: '#93A3C4' };
+    const remaining = 1000 - this.xp();
+    const nextBelt = cur < BELTS.length - 1 ? cap(BELTS[cur + 1][0]) + ' Belt' : null;
+    return {
+      beltTitle: cap(beltKey) + ' Belt — ' + BELTS[cur][2],
+      belts,
+      xpLabel: fmt(shown) + ' / 1,000 XP',
+      xpFillStyle: { width: pct + '%', minWidth: 'max-content', height: '100%', borderRadius: '7px', background: beltColor, color: darkLabel ? '#0B1733' : '#F7FAFF', display: 'flex', alignItems: 'center', padding: '0 14px', boxShadow: '0 0 16px ' + beltColor + '55', position: 'relative', overflow: 'hidden' },
+      gamesCompleted: 2,
+      streak,
+      panelGlow: { position: 'absolute', bottom: '6px', right: '0', width: '922px', zIndex: 3, borderRadius: '18px', transition: 'box-shadow .45s', boxShadow: this.state.glow ? '0 0 0 3px rgba(255,210,0,.6), 0 0 46px rgba(255,210,0,.3)' : '0 18px 50px rgba(0,0,0,.45)' },
+      chevStyle: { color: '#C7D2E8', fontSize: '13px', display: 'inline-block', transition: 'transform .2s', transform: this.state.menuOpen ? 'rotate(180deg)' : 'none' },
+      menuOpen: this.state.menuOpen,
+      toastOpen: !!this.state.toast,
+      toastText: this.state.toast,
+      card1Dim: dim('budget'), card2Dim: dim('credit'), card3Dim: dim('invest'),
+      chipBudgetWrap: ring('budget', '#FFD200'), chipCreditWrap: ring('credit', '#8A63E8'), chipInvestWrap: ring('invest', '#2E9E5B'),
+      notifyCreditLabel: this.state.notifiedCredit ? '🔔 ON THE LIST!' : 'COMING SOON',
+      notifyTickerLabel: this.state.notifiedTicker ? '🔔 ON THE LIST!' : 'COMING SOON',
+      notifyCreditStyle: notif(this.state.notifiedCredit),
+      notifyTickerStyle: notif(this.state.notifiedTicker),
+      startBtnProps: { style: { fontSize: '22px', padding: '18px 34px', borderRadius: '12px' } },
+      jumpBtnProps: { style: { fontSize: '18px', padding: '14px 26px' } },
+      playBtnProps: { style: { fontWeight: 800, fontSize: '15px', padding: '11px 22px', letterSpacing: '.06em', borderRadius: '9px', animation: 'pulseGlow 2.8s ease-in-out infinite' } },
+      gamesRef: this.gamesRef,
+      onStart: () => this.scrollGames(),
+      logoClick: () => this.say('💛 DoughJo — where your money moves get their black belt.'),
+      onBrowse: () => this.scrollGames(),
+      onJump: () => { this.glowPanel(); window.scrollTo({ top: 0, behavior: 'smooth' }); this.say(remaining > 0 && nextBelt ? "🥷 You're in, Kai! " + fmt(remaining) + ' XP to ' + nextBelt + '.' : "🥷 You're in, Kai! Black Belt achieved — true Money Sensei."); },
+      onPlayNow: () => this.say('🧟 Last Resort would launch here — budget your way out of the zombie motel. Demo build coming!'),
+      notifyCredit: () => { const on = !this.state.notifiedCredit; this.setState({ notifiedCredit: on }); if (on) this.say("🔔 On the list! We'll ping you the day Credit Clash drops."); },
+      notifyTicker: () => { const on = !this.state.notifiedTicker; this.setState({ notifiedTicker: on }); if (on) this.say("🔔 On the list! We'll ping you the day Ticker drops."); },
+      chipBudget: () => this.toggleFilter('budget'),
+      chipCredit: () => this.toggleFilter('credit'),
+      chipInvest: () => this.toggleFilter('invest'),
+      chipFraud: () => this.say('🛡️ Fraud & Safety games are still in training. Soon!'),
+      chipTime: () => this.say('⏱️ Every game fits in 5–10 minutes. One bus ride, one money skill.'),
+      chipWorld: () => this.say("🌍 Each game trains a skill you'll actually use — no theory dumps."),
+      chipWebinar: () => this.say('🎓 Zero webinars, promise. Just games.'),
+      avatarToggle: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      menuProfile: () => { this.setState({ menuOpen: false }); this.say("👤 Profiles are still in training — next sprint!"); },
+      menuBelts: () => { this.setState({ menuOpen: false }); this.glowPanel(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+      menuSignOut: () => { this.setState({ menuOpen: false }); this.say('👋 Signed out (not really — this is a prototype).'); },
+      navGames: () => this.scrollGames(),
+      navProgress: () => { this.glowPanel(); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+      navSkills: () => this.say('📚 The Money Skills hub lands with Season 2 — games first!')
+    };
+  }
+}
+</script>
+</body>
+</html>

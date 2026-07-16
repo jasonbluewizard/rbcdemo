@@ -1,0 +1,48 @@
+/* RBC Quest — Color tokens.
+   RBC rule: outside the logo, blue is always dominant; yellow + white support.
+   Yellow is an accent, never a co-lead — scarce yellow reads as "valuable". */
+:root{
+  /* ---- Core brand ---- */
+  --rbc-blue:       #005DAA;  /* hero / dominant — UI chrome, nav, primary */
+  --rbc-blue-comms: #0051A5;  /* official PMS 286 alt */
+  --rbc-blue-dark:  #003A75;  /* headers, depth, nav */
+  --rbc-yellow:     #FFD200;  /* reward, CTA, coins, XP */
+  --rbc-white:      #FFFFFF;  /* ground */
+
+  /* ---- Blue tints — surfaces / panels / disabled ---- */
+  --rbc-blue-300:   #73B0E3;
+  --rbc-blue-200:   #C3E2FA;
+  --rbc-blue-100:   #E3F4FF;
+
+  /* ---- Accents / game feedback ---- */
+  --rbc-sun:        #FCA311;  /* streaks, secondary highlight, warning */
+  --rbc-red:        #F93F26;  /* fail / danger — use lightly */
+  --rbc-green:      #2E9E5B;  /* success (added, not brand-official) */
+
+  /* ---- Neutrals ---- */
+  --ink:            #14213D;  /* primary text — blue-black */
+  --ink-muted:      #5B6B82;  /* secondary text */
+  --line:           #D7DEE8;  /* borders, dividers */
+  --bg:             #F5F8FC;  /* app background */
+
+  /* ---- Semantic aliases ---- */
+  --color-primary:        var(--rbc-blue);
+  --color-primary-hover:  var(--rbc-blue-dark);
+  --color-accent:         var(--rbc-yellow);
+  --surface-page:         var(--bg);
+  --surface-card:         var(--rbc-white);
+  --surface-panel:        var(--rbc-blue-100);
+  --surface-panel-strong: var(--rbc-blue-200);
+  --surface-brand:        var(--rbc-blue);
+  --surface-brand-dark:   var(--rbc-blue-dark);
+  --text-primary:         var(--ink);
+  --text-muted:           var(--ink-muted);
+  --text-on-brand:        var(--rbc-white);
+  --text-on-accent:       var(--ink);
+  --border-default:       var(--line);
+  --border-strong:        var(--rbc-blue-300);
+  --state-success:        var(--rbc-green);
+  --state-warning:        var(--rbc-sun);
+  --state-danger:         var(--rbc-red);
+  --focus-ring:           var(--rbc-blue-300);
+}
