@@ -440,3 +440,82 @@ a:focus-visible { outline: 2px solid var(--rbc-blue-300); outline-offset: 3px; b
   font-size: 15px;
   text-align: center;
 }
+
+/* ============================================================
+ * DoughJo concept teaser — dark banner linking to /doughjo
+ * ============================================================ */
+.dj-promo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  /* same gutters as .catalog so the banner lines up with the card grid */
+  width: calc(100% - 2 * clamp(16px, 4vw, 32px));
+  max-width: calc(var(--maxw) - 2 * clamp(16px, 4vw, 32px));
+  margin: 26px auto 0;
+  padding: 15px 22px;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(closest-side at 85% 0%, rgba(30,86,200,.55), transparent),
+    #030F23;
+  border: 1px solid rgba(255,210,0,.35);
+  box-shadow: var(--shadow-md);
+  color: #EAF0FA;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out), border-color var(--dur-base);
+}
+.dj-promo::after {           /* passing sheen */
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: -80px;
+  width: 60px;
+  background: linear-gradient(105deg, transparent, rgba(255,255,255,.14), transparent);
+  transform: skewX(-18deg);
+  animation: djPromoSheen 5.5s ease-in-out 1.5s infinite;
+  pointer-events: none;
+}
+@keyframes djPromoSheen {
+  0%   { transform: translateX(0) skewX(-18deg); }
+  55%, 100% { transform: translateX(calc(100vw)) skewX(-18deg); }
+}
+.dj-promo:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(255,210,0,.75);
+  color: #FFFFFF;
+}
+.dj-promo:focus-visible { outline: 3px solid var(--rbc-yellow); outline-offset: 3px; }
+.dj-promo__badge {
+  flex: none;
+  background: var(--rbc-yellow);
+  color: #08122B;
+  font-weight: 800;
+  font-size: 11.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: var(--radius-pill);
+  transform: rotate(-2deg);
+}
+.dj-promo__coin { flex: none; width: 36px; height: 36px; filter: drop-shadow(0 3px 8px rgba(0,0,0,.4)); }
+.dj-promo__copy { flex: 1; min-width: 200px; font-size: 15.5px; }
+.dj-promo__copy strong { color: var(--rbc-yellow); font-weight: 800; letter-spacing: .02em; }
+.dj-promo__cta {
+  flex: none;
+  color: #08122B;
+  background: linear-gradient(180deg, #FFE566, var(--rbc-yellow));
+  font-weight: 800;
+  font-size: 14px;
+  padding: 9px 16px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 3px 10px rgba(255,210,0,.35);
+  white-space: nowrap;
+}
+.dj-promo:hover .dj-promo__cta { filter: brightness(1.06); }
+@media (max-width: 720px) {
+  .dj-promo { flex-wrap: wrap; }
+  .dj-promo__copy { flex-basis: 100%; order: 3; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dj-promo::after { animation: none; }
+}

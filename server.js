@@ -82,7 +82,11 @@ const server = http.createServer((req, res) => {
     fs.readFile(filePath, (e, data) => {
       if (e) return send(res, 500, "Server error");
       const type = MIME[path.extname(filePath).toLowerCase()] || "application/octet-stream";
-      send(res, 200, data, { "Content-Type": type });
+      const headers = { "Content-Type": type };
+      // Images/fonts under /assets rarely change — let the browser keep them
+      // for an hour instead of re-fetching on every preview reload.
+      if (urlPath.startsWith("/assets/")) headers["Cache-Control"] = "public, max-age=3600";
+      send(res, 200, data, headers);
     });
   });
 });
