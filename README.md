@@ -58,6 +58,21 @@ python3 -m http.server 8000    # → http://localhost:8000
 
 ---
 
+## 🥋 Pages & routes
+
+| Route | What it is |
+|-------|------------|
+| `/` | Royal BankQuest — the game hub (this page). |
+| `/doughjo` | **DoughJo** — RBC-branded finlit game dojo concept for teens 14+ (dark "game mode" landing, XP, belts). |
+| `/finskool` | Earlier DoughJo portal mockup (dark arcade shelf). |
+
+`/doughjo` and `/finskool` are directories with an `index.html`, so they work as
+clean URLs on Replit's static hosting and via `server.js` alike. The DoughJo
+page's art, design-system bundle, and self-hosted React live under
+`assets/doughjo/`.
+
+---
+
 ## 📁 What's in here
 
 | File | Purpose |
@@ -67,6 +82,8 @@ python3 -m http.server 8000    # → http://localhost:8000
 | `styles.css` | Look & feel (responsive, light/dark). |
 | `app.js` | Renders cards + the mobile "best on desktop" warning. |
 | `server.js` | Zero-dependency static server (Replit + local). |
+| `doughjo/` | The DoughJo landing page (`/doughjo`). |
+| `assets/doughjo/` | DoughJo art, fonts, design-system bundle, vendored React. |
 | `.replit`, `package.json` | Replit run/deploy config. |
 | `assets/` | Optional logo / thumbnails (site works without them). |
 
