@@ -358,3 +358,164 @@ a:focus-visible { outline: 2px solid var(--rbc-blue-300); outline-offset: 3px; b
   .card:hover, .card:focus-within { transform: none; }
   .card:hover .card__logo { transform: none; }
 }
+
+/* ============================================================================
+ * DoughJo — /finskool mockup only (scoped under body.finskool)
+ * Additive; reuses every existing component above. No new @keyframes, so the
+ * reduced-motion block already covers it.
+ * ==========================================================================*/
+
+/* small "concept" label where the homepage shows "Presented by" */
+.finskool .topbar__concept { font-size: 13px; color: var(--text-muted); }
+
+/* concept (emoji) cards ride a bold accent-gradient banner; real logo cards
+   keep the light --rbc-blue-100 tile from .card__banner above */
+.finskool .card__banner--accent { border-bottom-color: rgba(255, 255, 255, .25); }
+.finskool .card__banner--accent .card__emoji {
+  font-size: 3.4rem;
+  filter: drop-shadow(0 4px 12px rgba(0, 0, 0, .28));
+}
+
+/* topic pill pinned to the banner corner */
+.finskool .card__tag {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 12px;
+  padding: 4px 10px;
+  background: rgba(255, 255, 255, .92);
+  color: var(--rbc-blue-dark);
+  border: 1px solid rgba(0, 93, 170, .15);
+}
+
+/* filter chip rows (Age / Topic) */
+.finskool .filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 18px;
+}
+.finskool .filters:last-of-type { margin-bottom: 28px; }
+.finskool .filters__label {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--ink);
+  margin: 0 4px 0 2px;
+}
+.finskool .chip {
+  font: 600 13px/1 var(--font-brand);
+  color: var(--ink);
+  background: #fff;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius-pill);
+  padding: 8px 14px;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-standard),
+              background var(--dur-fast) var(--ease-standard),
+              color var(--dur-fast) var(--ease-standard);
+}
+.finskool .chip:hover { border-color: var(--rbc-blue-300); }
+.finskool .chip[aria-pressed="true"] {
+  background: var(--rbc-blue);
+  color: #fff;
+  border-color: var(--rbc-blue);
+}
+.finskool .chip:focus-visible { outline: 3px solid var(--rbc-blue-300); outline-offset: 2px; }
+
+/* featured rail accent */
+.finskool .section--featured {
+  background: linear-gradient(180deg, #EAF2FB, transparent);
+  border: 1px solid var(--rbc-blue-200);
+  border-radius: var(--radius-lg);
+  padding: 20px clamp(14px, 2vw, 22px);
+  margin-bottom: 34px;
+}
+.finskool .section--featured .section__head { border-bottom-color: var(--rbc-blue-200); }
+
+/* empty-state when a filter combination has no games */
+.finskool .fs-empty {
+  padding: 28px 4px;
+  color: var(--text-muted);
+  font-size: 15px;
+  text-align: center;
+}
+
+/* ============================================================
+ * DoughJo concept teaser — dark banner linking to /doughjo
+ * ============================================================ */
+.dj-promo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  /* same gutters as .catalog so the banner lines up with the card grid */
+  width: calc(100% - 2 * clamp(16px, 4vw, 32px));
+  max-width: calc(var(--maxw) - 2 * clamp(16px, 4vw, 32px));
+  margin: 26px auto 0;
+  padding: 15px 22px;
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(closest-side at 85% 0%, rgba(30,86,200,.55), transparent),
+    #030F23;
+  border: 1px solid rgba(255,210,0,.35);
+  box-shadow: var(--shadow-md);
+  color: #EAF0FA;
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out), border-color var(--dur-base);
+}
+.dj-promo::after {           /* passing sheen */
+  content: "";
+  position: absolute;
+  top: 0; bottom: 0; left: -80px;
+  width: 60px;
+  background: linear-gradient(105deg, transparent, rgba(255,255,255,.14), transparent);
+  transform: skewX(-18deg);
+  animation: djPromoSheen 5.5s ease-in-out 1.5s infinite;
+  pointer-events: none;
+}
+@keyframes djPromoSheen {
+  0%   { transform: translateX(0) skewX(-18deg); }
+  55%, 100% { transform: translateX(calc(100vw)) skewX(-18deg); }
+}
+.dj-promo:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+  border-color: rgba(255,210,0,.75);
+  color: #FFFFFF;
+}
+.dj-promo:focus-visible { outline: 3px solid var(--rbc-yellow); outline-offset: 3px; }
+.dj-promo__badge {
+  flex: none;
+  background: var(--rbc-yellow);
+  color: #08122B;
+  font-weight: 800;
+  font-size: 11.5px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-radius: var(--radius-pill);
+  transform: rotate(-2deg);
+}
+.dj-promo__coin { flex: none; width: 36px; height: 36px; filter: drop-shadow(0 3px 8px rgba(0,0,0,.4)); }
+.dj-promo__copy { flex: 1; min-width: 200px; font-size: 15.5px; }
+.dj-promo__copy strong { color: var(--rbc-yellow); font-weight: 800; letter-spacing: .02em; }
+.dj-promo__cta {
+  flex: none;
+  color: #08122B;
+  background: linear-gradient(180deg, #FFE566, var(--rbc-yellow));
+  font-weight: 800;
+  font-size: 14px;
+  padding: 9px 16px;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 3px 10px rgba(255,210,0,.35);
+  white-space: nowrap;
+}
+.dj-promo:hover .dj-promo__cta { filter: brightness(1.06); }
+@media (max-width: 720px) {
+  .dj-promo { flex-wrap: wrap; }
+  .dj-promo__copy { flex-basis: 100%; order: 3; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dj-promo::after { animation: none; }
+}

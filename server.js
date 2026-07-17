@@ -57,19 +57,36 @@ const server = http.createServer((req, res) => {
   }
 
   fs.stat(filePath, (err, stat) => {
+    // Directory → serve its index.html (e.g. /finskool → finskool/index.html),
+    // matching how production static hosting (Replit) serves directory indexes.
+    if (!err && stat.isDirectory()) {
+      return fs.readFile(path.join(filePath, "index.html"), (e, data) =>
+        e ? send(res, 404, "Not found")
+          : send(res, 200, data, { "Content-Type": MIME[".html"] })
+      );
+    }
     if (err || !stat.isFile()) {
-      // Extensionless unknown route → serve the single-page app.
       if (!path.extname(filePath)) {
-        return fs.readFile(path.join(ROOT, "index.html"), (e, data) =>
-          e ? send(res, 404, "Not found") : send(res, 200, data, { "Content-Type": MIME[".html"] })
-        );
+        // Clean URLs: try "<route>.html" first (e.g. /finskool → finskool.html),
+        // then fall back to the single-page app shell (index.html).
+        return fs.readFile(filePath + ".html", (e, data) => {
+          if (!e) return send(res, 200, data, { "Content-Type": MIME[".html"] });
+          return fs.readFile(path.join(ROOT, "index.html"), (e2, data2) =>
+            e2 ? send(res, 404, "Not found")
+               : send(res, 200, data2, { "Content-Type": MIME[".html"] })
+          );
+        });
       }
       return send(res, 404, "Not found");
     }
     fs.readFile(filePath, (e, data) => {
       if (e) return send(res, 500, "Server error");
       const type = MIME[path.extname(filePath).toLowerCase()] || "application/octet-stream";
-      send(res, 200, data, { "Content-Type": type });
+      const headers = { "Content-Type": type };
+      // Images/fonts under /assets rarely change — let the browser keep them
+      // for an hour instead of re-fetching on every preview reload.
+      if (urlPath.startsWith("/assets/")) headers["Cache-Control"] = "public, max-age=3600";
+      send(res, 200, data, headers);
     });
   });
 });

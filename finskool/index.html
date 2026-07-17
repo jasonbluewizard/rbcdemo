@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>DoughJo — Train your money moves</title>
+  <meta name="description" content="DoughJo — RBC's financial-literacy game portal. Play games, build real money skills, own your future. Featured for ages 14–16. A concept mockup." />
+  <meta name="theme-color" content="#0A1230" />
+
+  <!-- Icons (root-absolute so they resolve from /finskool/) -->
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Social / link preview -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="DoughJo" />
+  <meta property="og:title" content="DoughJo — Train your money moves" />
+  <meta property="og:description" content="RBC's financial-literacy game portal — play games, build real money skills, own your future. Featured for ages 14–16." />
+  <meta property="og:url" content="https://rbcquest.com/finskool/" />
+  <meta property="og:image" content="https://rbcquest.com/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="DoughJo — Train your money moves" />
+  <meta name="twitter:image" content="https://rbcquest.com/assets/og-image.png" />
+
+  <!-- Fira Sans — RBC brand face (falls back to system-ui offline) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500;600;700;800&display=swap" />
+
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="stylesheet" href="/finskool.css" />
+</head>
+<body class="finskool">
+  <a class="skip-link" href="#games">Skip to games</a>
+
+  <!-- Top nav -->
+  <nav class="dj-nav" aria-label="Primary">
+    <div class="dj-nav__brand">
+      <img class="dj-nav__rbc" src="/assets/rbc-logo.png" alt="RBC" />
+      <span class="dj-nav__divider" aria-hidden="true"></span>
+      <span class="dj-nav__wordmark" data-brand>DoughJo</span>
+    </div>
+    <div class="dj-nav__links">
+      <a class="dj-nav__link" href="#featured">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 11h4M8 9v4M15.5 11h.01M18 12.5h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><rect x="2" y="6" width="20" height="12" rx="4" stroke="currentColor" stroke-width="2"/></svg>
+        Games
+      </a>
+      <a class="dj-nav__link" href="#progress">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 19V5M4 19h16M8 16v-4M12 16V9M16 16v-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        My Progress
+      </a>
+      <a class="dj-nav__link" href="#skills">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4 2 9l10 5 10-5-10-5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M6 11v4c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Money Skills
+      </a>
+    </div>
+    <div class="dj-nav__right">
+      <a class="dj-btn dj-btn--primary dj-nav__jump" href="#featured">Jump In
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <button class="dj-nav__avatar" type="button" aria-label="Your profile">
+        <span class="dj-nav__pic" aria-hidden="true">🧑‍🎤</span>
+        <svg class="dj-nav__caret" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="dj-hero">
+    <div class="dj-hero__grid">
+      <div class="dj-hero__left">
+        <span class="dj-logo" data-brand>DoughJo</span>
+        <h1 class="dj-hero__headline">Train your <em>money moves</em></h1>
+        <p class="dj-hero__tag">Play games. Build skills. Own your future.</p>
+        <div class="dj-hero__cta">
+          <a class="dj-btn dj-btn--primary" href="#featured">Start Playing
+            <span aria-hidden="true">⚡</span>
+          </a>
+          <a class="dj-btn dj-btn--ghost" href="#games">
+            <span aria-hidden="true">🎮</span> Explore Games
+          </a>
+        </div>
+      </div>
+
+      <!-- placeholder illustration (swap for real art later) -->
+      <div class="dj-hero__art" aria-hidden="true">
+        <span class="dj-hero__sign">DOJO</span>
+        <span class="dj-float dj-float--coin">🪙</span>
+        <span class="dj-float dj-float--card">💳</span>
+        <span class="dj-float dj-float--shield">🛡️</span>
+        <span class="dj-float dj-float--game">🎮</span>
+        <span class="dj-float dj-float--chart">📈</span>
+      </div>
+    </div>
+
+    <!-- Level / XP progress -->
+    <div class="dj-xp" id="progress">
+      <div class="dj-xp__level">
+        <span class="dj-xp__medal" aria-hidden="true">🎖️</span>
+        <div class="dj-xp__meta">
+          <div class="dj-xp__label">Level 3 — Money Rookie</div>
+          <div class="dj-xp__bar"><span class="dj-xp__fill"></span></div>
+          <div class="dj-xp__xp">620 / 1,000 XP</div>
+        </div>
+      </div>
+      <span class="dj-xp__divider" aria-hidden="true"></span>
+      <div class="dj-xp__stat"><span class="dj-emoji" aria-hidden="true">🎮</span><span><b>2</b> games completed</span></div>
+      <span class="dj-xp__divider" aria-hidden="true"></span>
+      <div class="dj-xp__stat"><span class="dj-emoji" aria-hidden="true">🔥</span><span><b>7</b> day streak</span></div>
+    </div>
+  </header>
+
+  <main>
+    <div class="dj-wrap">
+      <!-- Featured games -->
+      <section id="featured">
+        <div class="dj-h">
+          <h2><span class="dj-h__bolt" aria-hidden="true">⚡</span> Featured Games</h2>
+          <span class="dj-h__spacer"></span>
+          <span class="dj-h__arrow" aria-hidden="true">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </div>
+        <div class="dj-featured" id="dj-featured"></div>
+      </section>
+
+      <!-- Skills + Why -->
+      <section class="dj-panels" id="skills">
+        <div class="dj-panel">
+          <h3 class="dj-panel__title">Level up your skills</h3>
+          <div class="dj-skills">
+            <button class="dj-skill dj-skill--budgeting" type="button" data-topic="budgeting"><span class="dj-skill__dot" aria-hidden="true">🧮</span> Budgeting</button>
+            <button class="dj-skill dj-skill--credit" type="button" data-topic="credit"><span class="dj-skill__dot" aria-hidden="true">💳</span> Credit &amp; Debt</button>
+            <button class="dj-skill dj-skill--investing" type="button" data-topic="investing"><span class="dj-skill__dot" aria-hidden="true">📈</span> Investing</button>
+            <button class="dj-skill dj-skill--fraud" type="button" data-topic="fraud"><span class="dj-skill__dot" aria-hidden="true">🛡️</span> Fraud &amp; Safety</button>
+          </div>
+        </div>
+        <div class="dj-panel">
+          <h3 class="dj-panel__title">Why play?</h3>
+          <div class="dj-why">
+            <div class="dj-why__item"><span class="dj-why__ic" aria-hidden="true">⏱️</span><span><b>Quick 5–10 min games</b> — play between classes</span></div>
+            <div class="dj-why__item"><span class="dj-why__ic" aria-hidden="true">⭐</span><span><b>Real-world skills</b> — money moves that matter</span></div>
+            <div class="dj-why__item"><span class="dj-why__ic" aria-hidden="true">🎓</span><span><b>No boring lectures</b> — learn by doing</span></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Browse catalog (age / topic filters + full catalog) -->
+    <div class="catalog" id="games">
+      <div class="catalog__head dj-browse-head">
+        <h2 class="catalog__heading">Browse the dojo</h2>
+        <p class="catalog__hint">Filter by age or topic to find your next game.</p>
+      </div>
+      <div id="fs-filters" aria-label="Filters"></div>
+      <div id="fs-browse" class="sections"></div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <a href="https://questorlabs.com" target="_blank" rel="noopener noreferrer" aria-label="Questor Labs — questorlabs.com">
+          <img class="site-footer__logo" src="/assets/questor-labs-logo.png" alt="Questor Labs" />
+        </a>
+        <div>
+          <p class="site-footer__tag">Games developed by Questor Labs</p>
+          <p class="site-footer__studio">The educational-games studio of Blue Wizard — “Make Learning Irresistible”</p>
+        </div>
+      </div>
+      <div class="site-footer__meta">
+        <p class="site-footer__mark" data-brand>DoughJo</p>
+        <p class="site-footer__note">© RBC — a financial-literacy initiative · concept mockup</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Data first, then the renderer. Root-absolute so they load from /finskool/. -->
+  <script src="/finskool-games.js"></script>
+  <script src="/finskool.js"></script>
+</body>
+</html>
