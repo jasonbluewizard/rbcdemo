@@ -60,6 +60,16 @@ const server = http.createServer((req, res) => {
     // Directory → serve its index.html (e.g. /finskool → finskool/index.html),
     // matching how production static hosting (Replit) serves directory indexes.
     if (!err && stat.isDirectory()) {
+      // Canonicalize to a trailing slash first. Pages that reference their
+      // assets by *relative* path (e.g. /cibcdoughjo/, kept relative so the
+      // folder is portable to its own domain root later) resolve those paths
+      // against the directory only when the URL ends in "/". Production static
+      // hosts issue this redirect for us; doing it here keeps local preview and
+      // any Node-served deployment consistent with that behaviour.
+      if (!urlPath.endsWith("/")) {
+        const q = req.url.indexOf("?");
+        return send(res, 301, "", { Location: urlPath + "/" + (q >= 0 ? req.url.slice(q) : "") });
+      }
       return fs.readFile(path.join(filePath, "index.html"), (e, data) =>
         e ? send(res, 404, "Not found")
           : send(res, 200, data, { "Content-Type": MIME[".html"] })

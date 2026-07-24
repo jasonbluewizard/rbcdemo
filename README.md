@@ -64,12 +64,23 @@ python3 -m http.server 8000    # → http://localhost:8000
 |-------|------------|
 | `/` | Royal BankQuest — the game hub (this page). |
 | `/doughjo` | **DoughJo** — RBC-branded finlit game dojo concept for teens 14+ (dark "game mode" landing, XP, belts). |
+| `/cibcdoughjo` | **DoughJo for CIBC** — the same concept re-skinned to a CIBC palette (burgundy ground, CIBC crimson, gold reward). Self-contained folder, ready to point a standalone domain (e.g. `cibcdoughjo.com`) at later. |
 | `/finskool` | Earlier DoughJo portal mockup (dark arcade shelf). |
 
-`/doughjo` and `/finskool` are directories with an `index.html`, so they work as
-clean URLs on Replit's static hosting and via `server.js` alike. The DoughJo
-page's art, design-system bundle, and self-hosted React live under
+`/doughjo`, `/cibcdoughjo`, and `/finskool` are directories with an `index.html`,
+so they work as clean URLs on Replit's static hosting and via `server.js` alike.
+The DoughJo page's art, design-system bundle, and self-hosted React live under
 `assets/doughjo/`.
+
+**`/cibcdoughjo` is deliberately self-contained.** Everything it needs (art,
+fonts, design-system bundle, React) lives under `cibcdoughjo/assets/`, and every
+in-page path is *relative*. So it works today at `rbcquest.com/cibcdoughjo/` and,
+when a standalone domain is ready, you can point that domain's web root straight
+at the `cibcdoughjo/` folder with **no path changes**. The CIBC diamond mark, the
+red-jacket character, and the red `J$` wordmark are recolored **placeholders** —
+drop official CIBC art in over the matching files in `cibcdoughjo/assets/` to
+finish the skin. (`server.js` 301-redirects `/cibcdoughjo` → `/cibcdoughjo/` so
+those relative paths resolve under local preview too, just like static hosts do.)
 
 ---
 
@@ -83,6 +94,7 @@ page's art, design-system bundle, and self-hosted React live under
 | `app.js` | Renders cards + the mobile "best on desktop" warning. |
 | `server.js` | Zero-dependency static server (Replit + local). |
 | `doughjo/` | The DoughJo landing page (`/doughjo`). |
+| `cibcdoughjo/` | The CIBC-skinned DoughJo variant (`/cibcdoughjo`) — self-contained, with its own `assets/`. |
 | `assets/doughjo/` | DoughJo art, fonts, design-system bundle, vendored React. |
 | `.replit`, `package.json` | Replit run/deploy config. |
 | `assets/` | Optional logo / thumbnails (site works without them). |
