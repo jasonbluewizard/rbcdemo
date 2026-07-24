@@ -1,0 +1,10 @@
+/* Fira Sans — RBC brand face (free descendant of FF Meta). Static weights. */
+@font-face{font-family:"Fira Sans";src:url("../assets/fonts/FiraSans-Light.ttf") format("truetype");font-weight:300;font-style:normal;font-display:swap}
+@font-face{font-family:"Fira Sans";src:url("../assets/fonts/FiraSans-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:"Fira Sans";src:url("../assets/fonts/FiraSans-Medium.ttf") format("truetype");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:"Fira Sans";src:url("../assets/fonts/FiraSans-SemiBold.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap}
+@font-face{font-family:"Fira Sans";src:url("../assets/fonts/FiraSans-Bold.ttf") format("truetype");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:"Fira Sans";src:url("../assets/fonts/FiraSans-ExtraBold.ttf") format("truetype");font-weight:800;font-style:normal;font-display:swap}
+@font-face{font-family:"Fira Sans";src:url("../assets/fonts/FiraSans-Black.ttf") format("truetype");font-weight:900;font-style:normal;font-display:swap}
+/* Source Sans 3 — fallback face (variable weight axis) */
+@font-face{font-family:"Source Sans 3";src:url("../assets/fonts/SourceSans3-Variable.ttf") format("truetype");font-weight:200 900;font-style:normal;font-display:swap}
