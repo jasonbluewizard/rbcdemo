@@ -37,8 +37,11 @@
 <link rel="preload" as="image" href="assets/doughjologo.png" fetchpriority="high">
 <link rel="preload" as="image" href="assets/char1.png" fetchpriority="high">
 
-<!-- Design-system tokens + components (fonts come from Google Fonts below —
-     woff2 there is ~20 KB per weight vs ~450 KB per local TTF) -->
+<!-- Design-system tokens + components. fonts.css @font-faces the self-hosted
+     Fira Sans TTFs so the brand face survives offline / with the CDN blocked;
+     Google Fonts below adds the lighter woff2 build + the Rokkitt display face
+     (which falls back to Fira Sans / serif when unavailable). -->
+<link rel="stylesheet" href="assets/_ds/rbc-quest-design-system-6aa4c9f0-fd65-4a08-95af-42dae44925de/tokens/fonts.css">
 <link rel="stylesheet" href="assets/_ds/rbc-quest-design-system-6aa4c9f0-fd65-4a08-95af-42dae44925de/tokens/colors.css">
 <link rel="stylesheet" href="assets/_ds/rbc-quest-design-system-6aa4c9f0-fd65-4a08-95af-42dae44925de/tokens/typography.css">
 <link rel="stylesheet" href="assets/_ds/rbc-quest-design-system-6aa4c9f0-fd65-4a08-95af-42dae44925de/tokens/spacing.css">
@@ -61,6 +64,11 @@
   --rbc-blue-100:  #FBE7EB;
   --rbc-yellow:    #EAB64C;  /* reward / CTA gold */
   --rbc-sun:       #E29A2C;
+  /* Elevation tints are baked colours (not built from the tokens above), so
+     re-point the two brand-tinted glows too, else reward CTAs keep an RBC
+     lemon-yellow halo and primary CTAs an RBC-blue one. */
+  --shadow-reward: 0 6px 18px rgba(234,182,76,.40);  /* gold glow on reward CTAs */
+  --shadow-brand:  0 6px 20px rgba(200,16,46,.28);   /* crimson glow on primary CTAs */
 }
 html,body{margin:0;padding:0;background:#2A0A13;}
 a{color:#EAB64C;}a:hover{color:#F5D488;}
