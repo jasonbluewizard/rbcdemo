@@ -72,12 +72,15 @@ so they work as clean URLs on Replit's static hosting and via `server.js` alike.
 The DoughJo page's art, design-system bundle, and self-hosted React live under
 `assets/doughjo/`.
 
-**`/cibcdoughjo` is deliberately self-contained.** Everything it needs (art, the
-self-hosted Fira Sans brand face, design-system bundle, React) lives under
-`cibcdoughjo/assets/`, and every *local* asset path is relative. So it works
-today at `rbcquest.com/cibcdoughjo/` and, when a standalone domain is ready, you
-can point that domain's web root straight at the `cibcdoughjo/` folder with **no
-path changes**. (The only external request is Google Fonts — a lighter woff2
+**`/cibcdoughjo` is deliberately self-contained _and unlinked_.** The RBC and
+CIBC concepts are pitched to two different audiences, so the CIBC variant is
+**not** cross-linked from the Royal BankQuest homepage (or any RBC page) — it's
+reachable only by its own URL. Everything it needs (art, the self-hosted Fira
+Sans brand face, design-system bundle, React) lives under `cibcdoughjo/assets/`,
+and every *local* asset path is relative. So it works today at
+`rbcquest.com/cibcdoughjo/` and, when a standalone domain is ready, you can point
+that domain's web root straight at the `cibcdoughjo/` folder with **no path
+changes**. (The only external request is Google Fonts — a lighter woff2
 Fira Sans plus the Rokkitt display face — and both fall back to the bundled
 Fira Sans / serif offline, so the page still renders on-brand with no network.) The CIBC diamond mark, the
 red-jacket character, and the red `J$` wordmark are recolored **placeholders** —

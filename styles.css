@@ -519,12 +519,3 @@ a:focus-visible { outline: 2px solid var(--rbc-blue-300); outline-offset: 3px; b
 @media (prefers-reduced-motion: reduce) {
   .dj-promo::after { animation: none; }
 }
-/* CIBC-branded variant of the DoughJo teaser → /cibcdoughjo (concept re-skin) */
-.dj-promo--cibc {
-  background:
-    radial-gradient(closest-side at 85% 0%, rgba(200,16,46,.5), transparent),
-    #2A0A13;
-  border-color: rgba(234,182,76,.4);
-}
-.dj-promo--cibc:hover { border-color: rgba(234,182,76,.8); }
-.dj-promo--cibc .dj-promo__copy strong { color: #EAB64C; }
